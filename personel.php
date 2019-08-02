@@ -1,6 +1,6 @@
 <?php include 'session.php';?>
 <?php include 'header.php';?>
-
+<?php $id = $_GET['id']; ?>
 <body class="sidebar-mini fixed">
 <div class="wrapper">
       <div class="loader-bg">
@@ -136,7 +136,7 @@
                                         <tbody>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM `personel ")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM personel ")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query1)){
                                                 $id=$row['personel_id'];                      
                                                 ?>  
@@ -146,8 +146,8 @@
                                                  <td><?php echo $row['pin_number'];?></td>
                                                  <td><?php echo $row['position'];?></td>
                                                 <td>
-                                                <a href="#update<?php echo $id;?>" class="btn btn-primary btn-xs" data-toggle = "modal" data-target="#update<?php echo $id;?>"><i class = "fa fa-pencil"></i> Edit</a>
-                                                <a href="#update<?php echo $id;?>" class="btn btn-success btn-xs" data-toggle = "modal" data-target="#update<?php echo $id;?>"><i class = "fa fa-eye"></i> View</a>
+                                                <a href="update_personel.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs"><i class = "fa fa-pencil"></i> Edit</a>
+                                                <a href="profile_personel.php?id=<?php echo $id;?>" class="btn btn-success btn-xs"><i class = "fa fa-eye"></i> View</a>
                                                   
                                                 </td>
                                                               
