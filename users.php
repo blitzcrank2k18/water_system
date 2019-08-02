@@ -114,7 +114,7 @@
                                                   <td><?php echo $row['username'];?></td>
                                                   <td><?php echo $row['password'];?></td>
                                                 <td>
-                                                <a href="#update<?php echo $id;?>" class="btn btn-primary btn-xs" data-toggle = "modal" data-target="#update<?php echo $id;?>"><i class = "fa fa-pencil"></i> Edit</a>
+                                                <a href="update_user.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
                                                   
                                                 </td>
                                                               
