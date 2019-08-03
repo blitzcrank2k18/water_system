@@ -51,9 +51,10 @@
                             <i class="icon-user"></i><span> Customers</span>
                         </a>                
                     </li>
-                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-docs"></i><span>Orders</span><i class="icon-arrow-down"></i></a>
+                     <li class="treeview"><a class="waves-effect waves-dark" href="orders.php"><i class="icon-docs"></i><span>Orders</span><i class="icon-arrow-down"></i></a>
+                    </li>
+                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-docs"></i><span>Deliveries</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            
                             <li><a class="waves-effect waves-dark" href="pending.php" ><i class="icon-arrow-right"></i>Pending</a></li>
                             <li><a class="waves-effect waves-dark" href="delivered.php" ><i class="icon-arrow-right"></i>Delivered</a></li>
                          

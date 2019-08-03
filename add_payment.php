@@ -18,7 +18,8 @@ include 'dbcon.php';
     {
         mysqli_query($con,"INSERT INTO `delivery` (order_id,delivery_date,delivery_status,user_id) VALUES('$or','$delivery_date','pending','$user')")or die(mysqli_error());
     }
-    mysqli_query($con,"UPDATE `order` SET payment_status='$payment',order_status='pending' where order_id='$or'")or die(mysqli_error($con)); 
+
+    mysqli_query($con,"UPDATE `order` SET payment_status='$payment',order_status='confirmed' where order_id='$or'")or die(mysqli_error($con)); 
    
     
 echo "
