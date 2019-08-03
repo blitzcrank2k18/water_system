@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2019 at 05:27 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: Aug 03, 2019 at 01:44 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,16 +30,103 @@ CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(1000) NOT NULL,
-  `contact_number` varchar(20) NOT NULL
+  `contact_number` varchar(20) NOT NULL,
+  `type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customer_id`, `name`, `address`, `contact_number`) VALUES
-(1, 'Jerwin Pereys', 'Sitio Cabug EB Magalona', '09115465421'),
-(2, 'Natlie Hearts', 'Tres Fuentes Street Barangay Rizal Silay City', '0918171161');
+INSERT INTO `customer` (`customer_id`, `name`, `address`, `contact_number`, `type_id`) VALUES
+(1, 'Jerwin Pereys', 'Sitio Cabug EB Magalona', '09115465421', 2),
+(2, 'Natlie Hearts', 'Tres Fuentes Street Barangay Rizal Silay City', '0918171161', 1),
+(3, 'Jilliane', 'Busay', '09656565', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery`
+--
+
+CREATE TABLE `delivery` (
+  `delivery_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `delivery_date` date NOT NULL,
+  `delivery_status` varchar(30) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `delivery`
+--
+
+INSERT INTO `delivery` (`delivery_id`, `order_id`, `delivery_date`, `delivery_status`, `user_id`) VALUES
+(1, 48, '2019-10-14', 'pending', 0),
+(2, 49, '2019-08-02', 'pending', 0),
+(3, 50, '2019-08-19', 'pending', 0),
+(4, 51, '2019-01-01', 'pending', 0),
+(5, 52, '2019-08-19', 'pending', 0),
+(6, 53, '2019-08-19', 'pending', 0),
+(7, 54, '2019-08-05', 'pending', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `order_date` datetime NOT NULL,
+  `order_total` decimal(10,2) NOT NULL,
+  `order_status` varchar(30) NOT NULL,
+  `order_type` varchar(30) NOT NULL,
+  `payment_status` varchar(30) NOT NULL,
+  `charge` decimal(10,2) NOT NULL,
+  `disc` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `customer_id`, `order_date`, `order_total`, `order_status`, `order_type`, `payment_status`, `charge`, `disc`) VALUES
+(48, 1, '2019-08-03 12:37:44', '33.00', '', 'Delivery', '', '3.00', '0.00'),
+(49, 3, '2019-08-03 12:39:40', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
+(50, 3, '2019-08-03 13:34:53', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
+(51, 2, '2019-08-03 13:36:22', '27.00', 'pending', 'Delivery', 'Paid', '0.00', '3.00'),
+(52, 1, '2019-08-03 13:37:59', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
+(53, 3, '2019-08-03 13:39:10', '0.00', 'pending', 'Delivery', 'Paid', '0.00', '0.00'),
+(54, 3, '2019-08-03 13:40:29', '66.00', 'pending', 'Delivery', 'Paid', '6.00', '0.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `order_details_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `order_qty` int(11) NOT NULL,
+  `order_price` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`order_details_id`, `order_id`, `product_id`, `order_qty`, `order_price`, `total`) VALUES
+(45, 48, 1, 1, '30.00', '30.00'),
+(46, 49, 1, 1, '30.00', '30.00'),
+(47, 50, 1, 1, '30.00', '30.00'),
+(48, 51, 1, 1, '30.00', '30.00'),
+(49, 52, 1, 1, '30.00', '30.00'),
+(50, 54, 1, 2, '30.00', '60.00');
 
 -- --------------------------------------------------------
 
@@ -96,6 +181,49 @@ INSERT INTO `product` (`product_id`, `product_name`, `category`, `description`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `transaction_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `transaction_date` datetime NOT NULL,
+  `transaction_type` varchar(30) NOT NULL,
+  `amount` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`transaction_id`, `order_id`, `transaction_date`, `transaction_type`, `amount`) VALUES
+(1, 53, '2019-08-03 13:39:49', 'Cash', '0.00'),
+(2, 54, '2019-08-03 13:40:38', 'Cash', '66.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `type_id` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `discount` decimal(10,2) NOT NULL,
+  `delivery_charge` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`type_id`, `type`, `discount`, `delivery_charge`) VALUES
+(1, 'Vendor', '10.00', '0.00'),
+(2, 'Household', '0.00', '10.00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -113,28 +241,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`) VALUES
-(1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1),
-(2, '', '', '', '', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vendor`
---
-
-CREATE TABLE `vendor` (
-  `vendor_id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `contact_number` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `vendor`
---
-
-INSERT INTO `vendor` (`vendor_id`, `name`, `address`, `contact_number`) VALUES
-(1, 'Leslie Perlase', 'Tres Fuentes Street ', '091815711525');
+(1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1);
 
 --
 -- Indexes for dumped tables
@@ -145,6 +252,24 @@ INSERT INTO `vendor` (`vendor_id`, `name`, `address`, `contact_number`) VALUES
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`delivery_id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`order_details_id`);
 
 --
 -- Indexes for table `personel`
@@ -159,16 +284,22 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`type_id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `vendor`
---
-ALTER TABLE `vendor`
-  ADD PRIMARY KEY (`vendor_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -178,33 +309,47 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `personel`
 --
 ALTER TABLE `personel`
   MODIFY `personel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `vendor`
---
-ALTER TABLE `vendor`
-  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

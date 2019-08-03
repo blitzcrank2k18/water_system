@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-12 p-0">
                     <div class="main-header">
-                        <h4>User</h4>
+                        <h4>Customer Type</h4>
                         <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                             <li class="breadcrumb-item">
                                 <a href="index.html">
@@ -34,7 +34,7 @@
                             <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a>
                             
                             </li>
-                            <li class="breadcrumb-item"><a href="customer.php">Customer</a>
+                            <li class="breadcrumb-item"><a href="customer.php">Type</a>
                             
                             </li>
                         </ol>
@@ -50,32 +50,17 @@
                 <div class="col-sm-3 add">
                   <div class="card">
                         <div class="card-header">
-                            <h5 class="card-header-text">Add Customer</h5>
+                            <h5 class="card-header-text">Add Customer Type</h5>
                             
                         </div>
                         <div class="card-block">
                             <div class="row">
-                            <form method = "post" id = "form-add-user" action = "add_customer.php">
+                            <form method = "post" id = "form-add-user" action = "add_type.php">
                             <div class = "form-group">
-                                <input type = "text" class = "form-control" name = "name" placeholder = "Enter Customer Name" required>
-                            </div>
-                             <div class = "form-group">
-                                <textarea class = "form-control" name = "address" placeholder="Enter Address" required></textarea>
+                                <input type = "text" class = "form-control" name = "type" placeholder = "Enter Customer Type" required>
                             </div>
                             <div class = "form-group">
-                                <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number" required>
-                            </div>
-                            <div class = "form-group">
-                                <select class="form-control" name="type">
-                                <?php 
-                                            include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM type")or die(mysqli_error($con));
-                                                while ($row1=mysqli_fetch_array($query1)){
-                                                $id=$row1['type_id'];                      
-                                                ?>                                     
-                                    <option value="<?php echo $id;?>"><?php echo $row1['type']." (".$row1['discount'];?>% disc)</option>
-                                <?php }?>
-                                </select>
+                                <input type = "text" class = "form-control" name = "discount" placeholder = "Enter Discount">
                             </div>
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "save"><i class = "fa fa-save"></i> Save</button>
@@ -92,7 +77,7 @@
                 <div class="col-sm-9">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-header-text">Customer Table</h5>
+                            <h5 class="card-header-text">Customer Type Table</h5>
                             
                         </div>
                         <div class="card-block">
@@ -102,28 +87,25 @@
                                         <thead>
                                         <tr>
                                        
-                                            <th>Full Name</th>
-                                            <th>Address</th>
-                                            <th>Contact No.</th>
                                             <th>Type</th>
+                                            <th>Discount</th>
+                                            <th>Delivery Charge</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query=mysqli_query($con,"SELECT * FROM customer natural join type")or die(mysqli_error($con));
-                                                while ($row=mysqli_fetch_array($query)){
-                                                $id=$row['customer_id'];                      
+                                            $query1=mysqli_query($con,"SELECT * FROM type ")or die(mysqli_error($con));
+                                                while ($row=mysqli_fetch_array($query1)){
+                                                $id=$row['type_id'];                      
                                                 ?>  
                                               <tr>
-                                                 <td><?php echo $row['name'];?>
-                                                 <td><?php echo $row['address'];?></td>
-                                                 <td><?php echo $row['contact_number'];?></td>
-                                                 <td><?php echo $row['type'];?></td>
-                                                 
+                                                 <td><?php echo $row['type'];?>
+                                                 <td><?php echo $row['discount'];?>%</td>
+                                                 <td><?php echo $row['delivery_charge'];?>%</td>
                                                 <td>
-                                                <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
+                                                <a href="update_type.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
                                                   
                                                 </td>
                                                               

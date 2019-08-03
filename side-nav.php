@@ -54,9 +54,8 @@
                      <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-docs"></i><span>Orders</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             
-                            <li><a class="waves-effect waves-dark" href="pending_order.php" ><i class="icon-arrow-right"></i>Pending</a></li>
-                            <li><a class="waves-effect waves-dark" href="on_que.php" ><i class="icon-arrow-right"></i>On Que</a></li>
-                            <li><a class="waves-effect waves-dark" href="delivered_order.php" ><i class="icon-arrow-right"></i>Delivered</a></li>
+                            <li><a class="waves-effect waves-dark" href="pending.php" ><i class="icon-arrow-right"></i>Pending</a></li>
+                            <li><a class="waves-effect waves-dark" href="delivered.php" ><i class="icon-arrow-right"></i>Delivered</a></li>
                          
                         </ul>
                     </li>
@@ -101,7 +100,12 @@
 
                     <li>
                         <a class="waves-effect waves-dark" href="vendor.php">
-                            <i class="icon-user"></i><span> Vendor</span>
+                            <i class="icon-user"></i><span> Customer</span>
+                        </a>                
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="type.php">
+                            <i class="icon-user"></i><span> Type</span>
                         </a>                
                     </li>
                      <li>

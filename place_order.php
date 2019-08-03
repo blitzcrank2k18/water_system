@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-12 p-0">
                     <div class="main-header">
-                        <h4>User</h4>
+                        <h4>Order</h4>
                         <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                             <li class="breadcrumb-item">
                                 <a href="index.html">
@@ -34,7 +34,7 @@
                             <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a>
                             
                             </li>
-                            <li class="breadcrumb-item"><a href="customer.php">Customer</a>
+                            <li class="breadcrumb-item"><a href="customer.php">Order</a>
                             
                             </li>
                         </ol>
@@ -50,49 +50,49 @@
                 <div class="col-sm-3 add">
                   <div class="card">
                         <div class="card-header">
-                            <h5 class="card-header-text">Add Customer</h5>
+                            <h5 class="card-header-text">Order</h5>
                             
                         </div>
                         <div class="card-block">
                             <div class="row">
-                            <form method = "post" id = "form-add-user" action = "add_customer.php">
+                            <form method = "post" id = "form-add-user" action = "add_order.php">
                             <div class = "form-group">
-                                <input type = "text" class = "form-control" name = "name" placeholder = "Enter Customer Name" required>
-                            </div>
-                             <div class = "form-group">
-                                <textarea class = "form-control" name = "address" placeholder="Enter Address" required></textarea>
-                            </div>
-                            <div class = "form-group">
-                                <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number" required>
-                            </div>
-                            <div class = "form-group">
-                                <select class="form-control" name="type">
+                                <select class="form-control" name="customer">
+                                    <option selected="selected">--Select Customer--</option>
                                 <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM type")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM customer order by name")or die(mysqli_error($con));
                                                 while ($row1=mysqli_fetch_array($query1)){
-                                                $id=$row1['type_id'];                      
+                                                $id=$row1['customer_id'];                      
                                                 ?>                                     
-                                    <option value="<?php echo $id;?>"><?php echo $row1['type']." (".$row1['discount'];?>% disc)</option>
+                                    <option value="<?php echo $id;?>"><?php echo $row1['name'];?></option>
                                 <?php }?>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <select class="form-control" name="type">
+                                    <option selected="selected">--Select Transaction Type--</option>
+                                    <option>Walkin</option>
+                                    <option>Delivery</option>
+                                </select>
+                            </div> 
                             <div class = "form-group">
-                                <button type = "submit" class = "btn btn-primary btn-block save" name = "save"><i class = "fa fa-save"></i> Save</button>
+                                <button type = "submit" class = "btn btn-primary btn-block save" name = "save"><i class = "fa fa-save"></i> Next</button>
                             </div>
                             
                             <div class = "alert alert-danger alert-response" style = " display:none">
                                 Successfully Added
                             </div>                        
-                        </form>
+                       
                             </div>
                         </div>
-                    </div>
+                  </div>
+
                 </div>
                 <div class="col-sm-9">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-header-text">Customer Table</h5>
+                            <h5 class="card-header-text">Order Details</h5>
                             
                         </div>
                         <div class="card-block">
@@ -102,37 +102,34 @@
                                         <thead>
                                         <tr>
                                        
-                                            <th>Full Name</th>
-                                            <th>Address</th>
-                                            <th>Contact No.</th>
-                                            <th>Type</th>
-                                            <th>Action</th>
+                                            <th>Qty</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query=mysqli_query($con,"SELECT * FROM customer natural join type")or die(mysqli_error($con));
+                                            $query=mysqli_query($con,"SELECT * FROM product order by product_name")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query)){
-                                                $id=$row['customer_id'];                      
+                                                $id=$row['product_id'];                      
                                                 ?>  
                                               <tr>
-                                                 <td><?php echo $row['name'];?>
-                                                 <td><?php echo $row['address'];?></td>
-                                                 <td><?php echo $row['contact_number'];?></td>
-                                                 <td><?php echo $row['type'];?></td>
-                                                 
-                                                <td>
-                                                <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
-                                                  
-                                                </td>
-                                                              
+                                                 <td> 
+                                                <div class = "form-group col-md-5">
+                                                    <input type = "number" class = "form-control" name = "qty[]" placeholder = "Enter Qty">
+                                                </div></td>
+                                                <input type = "hidden" class = "form-control" name = "product[]" value="<?php echo $row['product_id'];?>">
+                                                <input type = "hidden" class = "form-control" name = "price[]" value="<?php echo $row['price'];?>">
+                                                 <td><?php echo $row['product_name'];?></td>
+                                                 <td><?php echo $row['price'];?></td>
                                               </tr>
                                                              
                                           <?php }?>
                                         </tbody>
                                     </table>
                                 </div>
+                                 </form>
                             </div>
                         </div>
                     </div>

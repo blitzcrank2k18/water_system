@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-sm-12 p-0">
                     <div class="main-header">
-                        <h4>Customer</h4>
+                        <h4>Customer Type</h4>
                         <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                             <li class="breadcrumb-item">
                                 <a href="index.html">
@@ -38,7 +38,7 @@
                             <li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a>
                             
                             </li>
-                            <li class="breadcrumb-item"><a href="users.php">Customer</a>
+                            <li class="breadcrumb-item"><a href="users.php">Customer Type</a>
                             
                             </li>
                         </ol>
@@ -56,40 +56,28 @@
                 </div>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM customer natural join type WHERE customer_id = $id")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM type WHERE type_id = $id")or die(mysqli_error($con));
                                                 $row=mysqli_fetch_array($query1)
                                         ?> 
                 <div class="col-sm-6 add">
                   <div class="card" style="padding:30px !important;">
                         <div class="card-header">
-                            <h5 class="card-header-text">Edit Customer</h5>
+                            <h5 class="card-header-text">Edit Customer Type</h5>
                             
                         </div>
                         <div class="card-block">
                             <div class="row">
-                            <form method = "post" id = "form-add-user" action = "update_customer_query.php">
+                            <form method = "post" id = "form-add-user" action = "update_type_query.php">
                             <div class = "form-group">
-                                <input  type = "hidden" class = "form-control" name = "customer_id" value = "<?=$id;?>">
+                                <input  type = "hidden" class = "form-control" name = "id" value = "<?=$id;?>">
 
-                             <input id = "firstname" type = "text" class = "form-control" name = "name" value = "<?=$row['name'];?>">
-                            </div>
-                             <div class = "form-group">
-                                <textarea name = "address" class = "form-control"><?=$row['address']?></textarea>
+                             <input id = "firstname" type = "text" class = "form-control" name = "type" value = "<?=$row['type'];?>">
                             </div>
                             <div class = "form-group">
-                                <input id = "username" type = "text" class = "form-control" name = "contact_number" value = "<?=$row['contact_number'];?>">
+                                <input id = "username" type = "text" class = "form-control" name = "discount" value = "<?=$row['discount'];?>">
                             </div>
                             <div class = "form-group">
-                                <select class="form-control" name="type">
-                                    <option value="<?php echo $row['type_id'];?>"><?php echo $row['type']." (".$row['discount'];?>% disc)</option>
-                                <?php 
-                                            $query1=mysqli_query($con,"SELECT * FROM type where type_id<>'$row[type_id]'")or die(mysqli_error($con));
-                                                while ($row1=mysqli_fetch_array($query1)){
-                                                $id=$row1['type_id'];                      
-                                                ?>                                     
-                                    <option value="<?php echo $id;?>"><?php echo $row1['type']." (".$row1['discount'];?>% disc)</option>
-                                <?php }?>
-                                </select>
+                                <input id = "username" type = "text" class = "form-control" name = "delivery_charge" value = "<?=$row['delivery_charge'];?>">
                             </div>
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "update"><i class = "fa fa-save"></i> Save</button>
