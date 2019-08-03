@@ -124,6 +124,7 @@
                                                  
                                                 <td>
                                                 <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
+                                                <a href="view_transactions.php?id=<?php echo $id;?>" class="btn btn-success btn-xs" ><i class = "fa fa-eye"></i> View</a>
                                                   
                                                 </td>
                                                               
