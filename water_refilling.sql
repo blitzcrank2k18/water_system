@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2019 at 05:07 PM
+-- Generation Time: Aug 03, 2019 at 05:27 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `water_refilling`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(1000) NOT NULL,
+  `contact_number` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `name`, `address`, `contact_number`) VALUES
+(1, 'Jerwin Pereys', 'Sitio Cabug EB Magalona', '09115465421'),
+(2, 'Natlie Hearts', 'Tres Fuentes Street Barangay Rizal Silay City', '0918171161');
 
 -- --------------------------------------------------------
 
@@ -46,8 +67,8 @@ CREATE TABLE `personel` (
 --
 
 INSERT INTO `personel` (`personel_id`, `firstname`, `lastname`, `pin_number`, `address`, `sex`, `birthday`, `mobile_number`, `status`, `position`) VALUES
-(1, 'Alexandra', 'Delos Reyes', '1254', 'Sitio Subay Barangay 5 EB Magalona ', 'Female', '08/25/1991', '0917989817', '', 'Driver'),
-(2, 'Juan', 'Rider', '0949', 'Tres Fuentes Street Barangay Rizal Silay city', 'Male', '08/25/1991', '0917989817', '', 'Driver');
+(1, 'Alexandra', 'Delos Reyes', '1254', 'Sitio Subay Barangay 5 EB Magalona ', 'Female', '08/25/1991', '0917989818', '', 'Driver'),
+(2, 'Juan', 'Rider', '09492', 'Tres Fuentes Street Barangay Rizal Silay city', 'Female', '08/25/1991', '0917989819', '', 'Delivery Boy');
 
 -- --------------------------------------------------------
 
@@ -93,11 +114,37 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`) VALUES
 (1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1),
-(2, 'jovic', 'a1Bz20ydqelm8m1wql48073418e34760a5dd2de9be2efae468', 'Juvic', 'Corugda', 0);
+(2, '', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor`
+--
+
+CREATE TABLE `vendor` (
+  `vendor_id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `contact_number` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vendor`
+--
+
+INSERT INTO `vendor` (`vendor_id`, `name`, `address`, `contact_number`) VALUES
+(1, 'Leslie Perlase', 'Tres Fuentes Street ', '091815711525');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `personel`
@@ -118,8 +165,20 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `vendor`
+--
+ALTER TABLE `vendor`
+  ADD PRIMARY KEY (`vendor_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personel`
@@ -138,6 +197,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `vendor`
+--
+ALTER TABLE `vendor`
+  MODIFY `vendor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
