@@ -4,6 +4,7 @@ include 'dbcon.php';
     $payment_method = $_POST['payment_method'];
 	$delivery_date = $_POST['delivery_date'];
     $or = $_POST['or'];
+    $user = $_POST['user'];
     $date=date('Y-m-d H:i:s');
 
     $query=mysqli_query($con,"SELECT * FROM `order` where order_id='$or'")or die(mysqli_error($con));
@@ -18,7 +19,7 @@ include 'dbcon.php';
     {
         mysqli_query($con,"INSERT INTO `delivery` (order_id,delivery_date,delivery_status,user_id) VALUES('$or','$delivery_date','pending','$user')")or die(mysqli_error());
     }
-
+   
     mysqli_query($con,"UPDATE `order` SET payment_status='$payment',order_status='confirmed' where order_id='$or'")or die(mysqli_error($con)); 
    
     

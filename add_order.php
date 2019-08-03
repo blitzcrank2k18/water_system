@@ -47,6 +47,14 @@ include 'dbcon.php';
          mysqli_query($con,"UPDATE `order` SET order_total='$total',charge='$charge' where order_id='$id'")
      or die(mysqli_error($con)); 
     }
+    elseif ($type1=="Household" and $type=="Walkin")
+    {     
+       // $charge=$total*$delivery_charge/100;
+       // $total=$total+$charge;
+     //   echo $charge;
+         mysqli_query($con,"UPDATE `order` SET order_total='$total' where order_id='$id'")
+     or die(mysqli_error($con)); 
+    }
     
 echo "
      <script>

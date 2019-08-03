@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2019 at 01:44 PM
+-- Generation Time: Aug 03, 2019 at 03:04 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -57,19 +57,6 @@ CREATE TABLE `delivery` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `delivery`
---
-
-INSERT INTO `delivery` (`delivery_id`, `order_id`, `delivery_date`, `delivery_status`, `user_id`) VALUES
-(1, 48, '2019-10-14', 'pending', 0),
-(2, 49, '2019-08-02', 'pending', 0),
-(3, 50, '2019-08-19', 'pending', 0),
-(4, 51, '2019-01-01', 'pending', 0),
-(5, 52, '2019-08-19', 'pending', 0),
-(6, 53, '2019-08-19', 'pending', 0),
-(7, 54, '2019-08-05', 'pending', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -93,13 +80,7 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `customer_id`, `order_date`, `order_total`, `order_status`, `order_type`, `payment_status`, `charge`, `disc`) VALUES
-(48, 1, '2019-08-03 12:37:44', '33.00', '', 'Delivery', '', '3.00', '0.00'),
-(49, 3, '2019-08-03 12:39:40', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
-(50, 3, '2019-08-03 13:34:53', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
-(51, 2, '2019-08-03 13:36:22', '27.00', 'pending', 'Delivery', 'Paid', '0.00', '3.00'),
-(52, 1, '2019-08-03 13:37:59', '33.00', 'pending', 'Delivery', 'Paid', '3.00', '0.00'),
-(53, 3, '2019-08-03 13:39:10', '0.00', 'pending', 'Delivery', 'Paid', '0.00', '0.00'),
-(54, 3, '2019-08-03 13:40:29', '66.00', 'pending', 'Delivery', 'Paid', '6.00', '0.00');
+(1, 1, '2019-08-03 15:03:52', '60.00', 'confirmed', 'Walkin', 'Paid', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -121,12 +102,7 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`order_details_id`, `order_id`, `product_id`, `order_qty`, `order_price`, `total`) VALUES
-(45, 48, 1, 1, '30.00', '30.00'),
-(46, 49, 1, 1, '30.00', '30.00'),
-(47, 50, 1, 1, '30.00', '30.00'),
-(48, 51, 1, 1, '30.00', '30.00'),
-(49, 52, 1, 1, '30.00', '30.00'),
-(50, 54, 1, 2, '30.00', '60.00');
+(1, 1, 1, 2, '30.00', '60.00');
 
 -- --------------------------------------------------------
 
@@ -167,7 +143,7 @@ CREATE TABLE `product` (
   `category` varchar(100) NOT NULL,
   `description` varchar(150) NOT NULL,
   `size` varchar(150) NOT NULL,
-  `price` int(11) NOT NULL
+  `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -175,8 +151,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `category`, `description`, `size`, `price`) VALUES
-(1, 'Blue Water Product 1', 'Container with Handle', 'This is a sample description', '1000', 30),
-(2, 'Blue Water Round Neck', 'Round Container', '', '1200', 35);
+(1, 'Blue Water Product 1', 'Container with Handle', 'This is a sample description', '1000', '30.00'),
+(2, 'Blue Water Round Neck', 'Round Container', '', '1200', '35.00');
 
 -- --------------------------------------------------------
 
@@ -197,8 +173,7 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`transaction_id`, `order_id`, `transaction_date`, `transaction_type`, `amount`) VALUES
-(1, 53, '2019-08-03 13:39:49', 'Cash', '0.00'),
-(2, 54, '2019-08-03 13:40:38', 'Cash', '66.00');
+(1, 1, '2019-08-03 15:04:08', 'Cash', '60.00');
 
 -- --------------------------------------------------------
 
@@ -233,15 +208,17 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL,
+  `user_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`) VALUES
-(1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1);
+INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`, `user_type`) VALUES
+(1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1, 'admin'),
+(3, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC ', 'USER', 1, 'delivery');
 
 --
 -- Indexes for dumped tables
@@ -314,17 +291,17 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `personel`
 --
@@ -339,7 +316,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `type`
 --
@@ -349,7 +326,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
