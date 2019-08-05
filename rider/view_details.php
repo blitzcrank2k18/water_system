@@ -93,7 +93,7 @@
             <form method="POST">
 
             <input type = "hidden" name = "delivery_id" value = "<?=$row['delivery_id']?>">
-            <input type = "text" name = "order_id" value = "<?=$row['order_id']?>">
+            <input type = "hidden" name = "order_id" value = "<?=$row['order_id']?>">
            
 
             
@@ -184,8 +184,8 @@
         <div class="modal-body">
             <form method = "POST" action = "add_payment_query.php">
                 <div class = "form-group">
-                    <input type = "text " class = "form-control" name = "order_id" value = "<?=$or?>">
-                    <input type = "text " class = "form-control" name = "delivery_id" value = "<?=$id2?>">
+                    <input type = "hidden " class = "form-control" name = "order_id" value = "<?=$or?>">
+                    <input type = "hidden " class = "form-control" name = "delivery_id" value = "<?=$id2?>">
                     <input type = "text " class = "form-control" name = "amount" placeholder="Enter amount">
                 </div>
                 <div class = "form-group">
