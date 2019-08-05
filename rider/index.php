@@ -1,190 +1,127 @@
-<?php include 'header.php';?>
+<?php include 'header_login.php';?>
+<body>
 
-<body class="grey lighten-3">
+	<style type="text/css">
+		@media only screen and (max-width: 576px){
+			.login-card {
+			    width: 290px;
+			    border-radius: 30px;
+			}
+			.logo-container {
+			    position: relative;
+			    top: -50px;
+			}
+			.login-card.card-block {
+			    position: relative;
+			    top: -50px;
+			}
+			input.md-form-control {
+				text-align: center;
+			}
+		}
+	</style>
+<section class="login p-fixed d-flex text-center">
+	<!-- Container-fluid starts -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class = "logo-container" style="text-align: center;">
+				<img src = "./assets/images/logo_asset.png" style = "max-width:180px"/>
+			</div>
 
-  <!--Main Navigation-->
-  <header>
+			<div class="col-sm-12">
+				<div class="login-card card-block">
+					<form class="md-float-material" method="POST" enctype="multipart/form-data" id = "login_form" >
+						<div class="text-center">
+							<!-- <img src="assets/images/logo-blue.png" alt="logo"> -->
 
-    <!-- Navbar -->
- <?php include 'navbar.php';?>
-    <!-- Navbar -->
+						</div>
+						<h3 class="text-center txt-primary">
+							Delivery Login
+						</h3>
+						
+						<div class="md-input-wrapper">
+							<input type="password" class="md-form-control"  name = "password"  placeholder="Enter Your Pin / Password " />
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-10 offset-xs-1">
+								<button  class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+							</div>
+						</div>
+						<!-- <div class="card-footer"> -->
+						<!-- </div> -->
+					</form>
 
-  </header>
-  <!--Main Navigation-->
 
-  <!--Main layout-->
-  <main class="pt-5 mx-lg-5">
-    <div class="container-fluid mt-5">
+						<div  id = "error" class = "alert alert-danger">
+							Error Credentials Please Try Again !
+						</div>
+						<div  id = "correct" class = "alert alert-success">
+							Credentials Accepted !
+						</div>
 
-      <div class="row wow fadeIn">
 
 
-        <!--Grid column-->
 
-        <!--Grid column-->
-        <div class="col-md-3 mb-4">
+					<!-- end of form -->
+				</div>
 
-          <div class="card mb-4">
+				<!-- end of login-card -->
+			</div>
+			<!-- end of col-sm-12 -->
+		</div>
+		<!-- end of row -->
+	</div>
+	<!-- end of container-fluid -->
+</section>
 
-            <!--Card content-->
-            <div class="card-body adjustable">
-              <!-- List group links -->
-              <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                    Juvic Corugda
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                    Alma Corugda
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                   Raven Dimanalata
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                   Kris Ann Dimanalata
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                    Febe Joy Corugda
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                   Zyrine Corugda
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                    Alexandra Delo Santos
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-                 <a class="list-group-item list-group-item-action waves-effect">
-                  <div class = "name-section">
-                    Floyd Melecio
-                  </div>
-                  <div class = "button-section">
-                    <button class = "btn btn-sm btn-success float-right">view</button>
-                  </div>
-                </a>
-              
-              </div>
-              
 
-              <!-- List group links -->
-            </div>
+<![endif]-->
+<!-- Warning Section Ends -->
+<!-- Required Jqurey -->
 
-          </div>
-          <!--/.Card-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery_v4.min.js"></script>
+<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="assets/plugins/tether/dist/js/tether.min.js"></script>
+<!-- Required Fremwork -->
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- waves effects.js -->
+<script src="assets/plugins/Waves/waves.min.js"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="assets/pages/elements.js"></script>
 
-        </div>
-        </div>
-        <!--Grid column-->
 
-     
-      <!--Grid row-->
-
-    </div>
-  </main>
-  <!--Main layout-->
-
-  <!--Footer-->
-  <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4 wow fadeIn" style = "position: relative; bottom: 0; width: 100%;">
-
-    <!--Call to action-->
-  
-    <!--/.Call to action-->
-
-    <hr class="my-4">
-
-    <!-- Social icons -->
-    <div class="pb-4">
-      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
-        <i class="fab fa-facebook-f mr-3"></i>
-      </a>
-
-      <a href="https://twitter.com/MDBootstrap" target="_blank">
-        <i class="fab fa-twitter mr-3"></i>
-      </a>
-
-      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
-        <i class="fab fa-youtube mr-3"></i>
-      </a>
-
-      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
-        <i class="fab fa-google-plus mr-3"></i>
-      </a>
-
-      <a href="https://dribbble.com/mdbootstrap" target="_blank">
-        <i class="fab fa-dribbble mr-3"></i>
-      </a>
-
-      <a href="https://pinterest.com/mdbootstrap" target="_blank">
-        <i class="fab fa-pinterest mr-3"></i>
-      </a>
-
-      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
-        <i class="fab fa-github mr-3"></i>
-      </a>
-
-      <a href="http://codepen.io/mdbootstrap/" target="_blank">
-        <i class="fab fa-codepen mr-3"></i>
-      </a>
-    </div>
-    <!-- Social icons -->
-
-    <!--Copyright-->
-    <div class="footer-copyright py-3">
-      © 2019 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> CHMSC TALISAY BSIS </a>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-
-  </script>
- </body>
-
+<script>
+	jQuery(document).ready(function(){
+		$('#error').hide()
+		$('#correct').hide()
+	jQuery("#login_form").submit(function(e){
+		
+			e.preventDefault();
+			var formData = jQuery(this).serialize();
+			$.ajax({
+				type: "POST",
+				url: "login.php",
+				data: formData,
+				success: function(html){
+				console.log('html ', html)
+				if(html=='True')
+				{
+					$('#error').hide();
+					$("#correct").slideDown();					
+					setTimeout(function(){	window.location = 'dashboard.php';   }, delay);  
+				}else{
+				$('#error').slideDown();	
+					var delay = 3000;
+					setTimeout(function(){	$('#error').slideUp();  }, delay);  
+				}
+				}
+			});
+				return false;
+		});
+	});
+</script>
+</body>
 </html>

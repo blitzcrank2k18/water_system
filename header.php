@@ -89,5 +89,5 @@
     .col-sm-3.add .card-block {
     padding: 2.25rem;
 }
-</style>1
+</style>
  </head>

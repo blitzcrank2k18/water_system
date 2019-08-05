@@ -107,7 +107,7 @@
                                             $query1=mysqli_query($con,"SELECT * FROM `user ")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query1)){
                                                 $id=$row['user_id'];                      
-                                                ?>  
+                                            ?>  
                                               <tr>
                                                  <td><?php echo $row['firstname'];?>
                                                  <td><?php echo $row['lastname'];?></td>

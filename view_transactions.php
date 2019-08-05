@@ -102,6 +102,8 @@
                                             $query=mysqli_query($con,"SELECT * FROM `order` natural join customer where customer_id='$id' order by order_date DESC")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query)){
                                                    $or=$row['order_id'];
+
+                                                   $status = $row['payment_status'];
                                                 ?>  
                                               <tr>
                                                  <td><?php echo $row['order_id'];?></td>
@@ -111,7 +113,16 @@
                                                  <td><?php echo $row['order_total'];?></td>
                                                  <td><?php echo $row['payment_status'];?></td>
                                                 <td>
-                                                <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-money"></i> Pay</a>
+
+                                                  <?php 
+
+                                                  if($status =='Unpaid'){
+                                                    echo '<a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-money"></i> Pay</a>';
+                                                  }
+                                                  else{
+                                                    echo '<a href="#" class="btn btn-primary btn-xs" disabled><i class = "fa fa-money"></i> Already Paid</a>';
+                                                  } ?>
+                                                
                                                   
                                                 </td>
                                                               
