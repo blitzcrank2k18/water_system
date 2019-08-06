@@ -65,12 +65,12 @@
 
                      
                     <li class="treeview">
-                        <a class="waves-effect waves-dark" href="personel.php">
+                        <a class="waves-effect waves-dark" href="sales_report.php">
                             <i class="icon-graph"></i><span> Sales Reports</span>
                         </a>                
                     </li>
                      <li class="treeview">
-                        <a class="waves-effect waves-dark" href="users.php">
+                        <a class="waves-effect waves-dark" href="payment_reports.php">
                             <i class="icon-graph"></i><span> Payment Reports</span>
                         </a>                
                     </li>
