@@ -80,7 +80,7 @@
                         </a>                
                     </li>
                     <li class="treeview">
-                        <a class="waves-effect waves-dark" href="users.php">
+                        <a class="waves-effect waves-dark" href="delivery_report.php">
                             <i class="icon-graph"></i><span> Delivery Reports</span>
                         </a>                
                     </li>
@@ -93,12 +93,6 @@
 
                       <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-docs"></i><span>Maintenance</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li>
-                        <a class="waves-effect waves-dark" href="personel.php">
-                            <i class="icon-user"></i><span> Personel</span>
-                        </a>                
-                    </li>
-
                     <li>
                         <a class="waves-effect waves-dark" href="vendor.php">
                             <i class="icon-user"></i><span> Customer</span>

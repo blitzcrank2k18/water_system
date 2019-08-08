@@ -117,7 +117,7 @@
                                               <tr>
                                                  <td> 
                                                 <div class = "form-group col-md-5">
-                                                    <input type = "number" class = "form-control" name = "qty[]" placeholder = "Enter Qty">
+                                                    <input id ="qty" type = "number" class = "form-control" name = "qty[]" placeholder = "Enter Qty">
                                                 </div></td>
                                                 <input type = "hidden" class = "form-control" name = "product[]" value="<?php echo $row['product_id'];?>">
                                                 <input type = "hidden" class = "form-control" name = "price[]" value="<?php echo $row['price'];?>">
@@ -148,6 +148,14 @@
 
 
 <?php include 'scripts.php';?>
+
+<script type="text/javascript">
+    
+    if($('.qty').val() == ''){
+        alert('Please Enter a value');
+        return false;
+    }
+</script>
 </body>
 
 </html>

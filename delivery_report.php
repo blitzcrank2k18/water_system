@@ -68,10 +68,12 @@
                            <thead>
                             <tr>
                                 <td>Customer Name</td>
-                                <td>Transaction Date</td>
+                                <td>Date</td>
                                 <td>Address</td>
                                 <!-- <td>Mode of Payment</td> -->
-                                <td>Amount</td>
+                                <td>Delivery Personel</td>
+
+                                
 
                             </tr>
              </thead>
