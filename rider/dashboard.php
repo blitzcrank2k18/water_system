@@ -45,7 +45,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="col-sm-12 card dashboard-product">
                     <h4><b><?=$row['name']?></b></h4>
-                    <h2 class="dashboard-total-products"><span>Php.</span><?=$row['order_total']?></h2>
+                    <h2 class="dashboard-total-products"><span>Php.</span><?=$row['balance']?></h2>
 
                      
                   <?php
@@ -55,7 +55,7 @@
                     else if($status == 'Paid'){
                         echo '  <span class="label label-success">'.$row["payment_status"].'</span>' ; 
                     }
-                    else if($status =='Partial'){
+                    else if($status =='Partially Paid'){
                         echo '  <span class="label label-warning">'.$row["payment_status"].'</span>' ; 
                     }
 
@@ -75,7 +75,7 @@
                         <i class="icon-social-soundcloud"></i>
                     </div>';    
                         }
-                    else if($status == 'Partial'){
+                    else if($status == 'Partially Paid'){
                         echo '<div class="side-box bg-warning">
                         <i class="icon-social-soundcloud"></i>
                     </div>';    

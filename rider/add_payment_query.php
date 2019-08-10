@@ -12,7 +12,7 @@ include 'dbcon.php';
 
 
 
-    mysqli_query($con,"UPDATE `order` SET payment_status='Paid' where order_id='$order_id'")or die(mysqli_error($con)); 
+    mysqli_query($con,"UPDATE `order` SET payment_status='Paid', balance = '0.00' where order_id='$order_id'")or die(mysqli_error($con)); 
 
 
     mysqli_query($con,"UPDATE `delivery` SET delivery_status = 'Delivered' where delivery_id='$delivery_id' ")or die(mysqli_error($con)); 

@@ -67,17 +67,21 @@
                                 <label>Customer Name</label>
                                  <input type = "text" class = "form-control" value="<?php echo $rowc['name'];?>">
                             </div>    
-                            <div class = "form-group">
+                            <!-- <div class = "form-group">
                                 <label>Payment Method</label>
                                 <select class="form-control" name="payment_method" id = "payment_method">
                                     <option selected="selected">--Select Payment Method--</option>
                                     <option>Cash</option>
                                     <option>AR</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class = "form-group">
                                 <label>Delivery Date</label>
                                 <input type = "date" class = "form-control" name = "delivery_date" placeholder = "Enter Delivery Date">
+                            </div>
+                            <div class = "form-group">
+                                <label>Amount Paid</label>
+                                <input type = "text" class = "form-control" name = "payment" placeholder = "Enter Payment amount">
                             </div>
                             <div class = "form-group">
                                 <label>Delivery Boy</label>
@@ -93,13 +97,13 @@
                                 <?php }?>
                                 </select>
                             </div>
-                            <div class = "form-group">
+                           <!--  <div class = "form-group">
                                 <label>Payment Status</label>
-                                <select class="form-control" name="payment" id = "payment_option">
+                                <select class="form-control" name="payment_status" id = "payment_option">
                                     <option>Unpaid</option>
                                     <option>Paid</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "save"><i class = "fa fa-save"></i> Confirm</button>
                             </div>
@@ -191,34 +195,34 @@
 
 <script>
 
-  $(document).ready(function(){
-    function AR()
-    {
-       $('#payment_option').attr('readonly', 'true');
-       $('#payment_option').val('Unpaid');
-    }
-    function exchange()
-    {
-        $('#payment_option').removeAttr('readonly', 'true');
-    }
-    function something()
-    {
-        alert('Called function something');
-    }
-    $('#payment_method').on('change', function() {
+//   $(document).ready(function(){
+//     function AR()
+//     {
+//        $('#payment_option').attr('readonly', 'true');
+//        $('#payment_option').val('Unpaid');
+//     }
+//     function exchange()
+//     {
+//         $('#payment_option').removeAttr('readonly', 'true');
+//     }
+//     function something()
+//     {
+//         alert('Called function something');
+//     }
+//     $('#payment_method').on('change', function() {
     
-      if ( $('#payment_method').val() == 'AR' ){
-       AR(); 
-      }
+//       if ( $('#payment_method').val() == 'AR' ){
+//        AR(); 
+//       }
        
-      else if ( $('#payment_method').val() == 'Cash' ) {
-        exchange();
-      }
-      else if ( $('#payment_method').val() == '' ) {
-        something();
-      }
-    });
-});
+//       else if ( $('#payment_method').val() == 'Cash' ) {
+//         exchange();
+//       }
+//       else if ( $('#payment_method').val() == '' ) {
+//         something();
+//       }
+//     });
+// });
 
 
 </script>

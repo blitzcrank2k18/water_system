@@ -62,7 +62,7 @@
                     </tr>
                      <tr>
                         <td>Total : </td>
-                        <td><a href = "#">Php.<?=$row['order_total']?></a></td>
+                        <td><a href = "#">Php. <?=$row['balance']?></a></td>
                     </tr>
 
                          <?php 
@@ -100,7 +100,7 @@
 
           <?php 
             $status = $row['payment_status'];
-            if( $status == 'Unpaid' || $status == 'Partial' ) {
+            if( $status == 'Unpaid' || $status == 'Partially Paid' ) {
                 echo '<a href  = "#myModal'.$row['delivery_id'].'" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal'.$row['delivery_id'].'">
                           Mark as Paid
                      </a>';
@@ -186,7 +186,7 @@
                 <div class = "form-group">
                     <input type = "hidden" class = "form-control" name = "order_id" value = "<?=$or?>">
                     <input type = "hidden" class = "form-control" name = "delivery_id" value = "<?=$id2?>">
-                    <input type = "hidden" class = "form-control" name = "amount" value = "<?=$row['order_total']?>">
+                    <input type = "text" class = "form-control" name = "amount" value = "<?=$row['balance']?>">
                    <center> Are you sure this customer is already paid ?</center> 
                 </div>
                 
