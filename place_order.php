@@ -150,11 +150,12 @@
 <?php include 'scripts.php';?>
 
 <script type="text/javascript">
-    
-    if($('.qty').val() == ''){
-        alert('Please Enter a value');
-        return false;
-    }
+  
+
+
+
+
+  
 </script>
 </body>
 

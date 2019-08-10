@@ -69,27 +69,22 @@
                             <i class="icon-graph"></i><span> Sales Reports</span>
                         </a>                
                     </li>
+
                      <li class="treeview">
-                        <a class="waves-effect waves-dark" href="payment_reports.php">
-                            <i class="icon-graph"></i><span> Payment Reports</span>
+                        <a class="waves-effect waves-dark" href="delivery_report.php">
+                            <i class="icon-graph"></i><span> Delivery Reports</span>
                         </a>                
                     </li>
+
+                   
+
                     <li class="treeview">
                         <a class="waves-effect waves-dark" href="users.php">
                             <i class="icon-graph"></i><span> Inventory Reports</span>
                         </a>                
                     </li>
-                    <li class="treeview">
-                        <a class="waves-effect waves-dark" href="delivery_report.php">
-                            <i class="icon-graph"></i><span> Delivery Reports</span>
-                        </a>                
-                    </li>
-                    <li class="treeview">
-                        <a class="waves-effect waves-dark" href="users.php">
-                            <i class="icon-user"></i><span> Customer Reports</span>
-                        </a>                
-                    </li>
 
+                    
 
                       <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-docs"></i><span>Maintenance</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">

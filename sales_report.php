@@ -92,7 +92,7 @@
                 if (isset($_POST['generate'])) {
                    $start = date('Y-m-d', strtotime($_POST['start']));
                    $end = date('Y-m-d', strtotime($_POST['end']));
-                   $query = "SELECT * FROM transaction  LEFT JOIN `order` ON order.order_id = transaction.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id WHERE transaction_date BETWEEN '$start' AND '$end' AND  order.payment_status = 'Paid' AND transaction_type = 'CASH' GROUP BY transaction.order_id";
+                   $query = "SELECT * FROM transaction  LEFT JOIN `order` ON order.order_id = transaction.order_id WHERE transaction_date BETWEEN '$start' AND '$end' AND  order.payment_status = 'Paid' AND transaction_type = 'CASH' GROUP BY transaction.order_id";
 
                    $data = mysqli_query($con, $query) ;
 
@@ -105,9 +105,9 @@
                        
                            echo "
                            <tr>
-                                <td>" . $row['name'] . "</td>
+                               
                                 <td>" . $row['transaction_date'] . "</td>
-                                 <td>" . $row['address'] . "</td>
+                               
                                 <td>" . $row['amount'] . "</td>
                                 
                                

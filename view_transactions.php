@@ -117,7 +117,7 @@
                                                   <?php 
 
                                                   if($status =='Unpaid'){
-                                                    echo '<a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-money"></i> Pay</a>';
+                                                    echo '<a href = "#myModal'.$row['order_id'].'" class="btn btn-warning btn-xs" data-target = "#myModal'.$row['order_id'].'" data-toggle = "modal"><i class = "fa fa-money"></i> Unpaid (click here to pay)</a>';
                                                   }
                                                   else{
                                                     echo '<a href="#" class="btn btn-primary btn-xs" disabled><i class = "fa fa-money"></i> Already Paid</a>';
@@ -161,6 +161,38 @@
         <!-- Container-fluid ends -->
     </div>
 </div>
+
+
+
+<div class="modal" id="myModal<?=$row['order_id']?>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <span class="modal-title"></span>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form method = "POST" action = "add_payment_query.php">
+                <div class = "form-group">
+                    <input type = "hidden" class = "form-control" name = "order_id" value = "<?=$or?>">
+                    <input type = "hidden" class = "form-control" name = "delivery_id" value = "<?=$id2?>">
+                    <input type = "hidden" class = "form-control" name = "amount" value = "<?=$row['order_total']?>">
+                   <center> Are you sure this customer is already paid ?</center> 
+                </div>
+                
+                <div class = "form-group">
+                    <button  class ="btn btn-primary btn-block" name = "submit">Submit as paid</button>
+                </div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 
 

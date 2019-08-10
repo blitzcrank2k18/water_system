@@ -26,7 +26,7 @@ include 'dbcon.php';
 echo "
      <script>
         alert('Customer Successfully Added');
-        window.location = 'receipt.php?or=$or';
+         window.location = 'receipt.php?or=$or';
      </script>
 ";
   

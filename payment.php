@@ -69,7 +69,7 @@
                             </div>    
                             <div class = "form-group">
                                 <label>Payment Method</label>
-                                <select class="form-control" name="payment_method">
+                                <select class="form-control" name="payment_method" id = "payment_method">
                                     <option selected="selected">--Select Payment Method--</option>
                                     <option>Cash</option>
                                     <option>AR</option>
@@ -95,9 +95,9 @@
                             </div>
                             <div class = "form-group">
                                 <label>Payment Status</label>
-                                <select class="form-control" name="payment">
-                                    <option>Paid</option>
+                                <select class="form-control" name="payment" id = "payment_option">
                                     <option>Unpaid</option>
+                                    <option>Paid</option>
                                 </select>
                             </div>
                             <div class = "form-group">
@@ -188,6 +188,40 @@
 
 
 <?php include 'scripts.php';?>
+
+<script>
+
+  $(document).ready(function(){
+    function AR()
+    {
+       $('#payment_option').attr('readonly', 'true');
+       $('#payment_option').val('Unpaid');
+    }
+    function exchange()
+    {
+        $('#payment_option').removeAttr('readonly', 'true');
+    }
+    function something()
+    {
+        alert('Called function something');
+    }
+    $('#payment_method').on('change', function() {
+    
+      if ( $('#payment_method').val() == 'AR' ){
+       AR(); 
+      }
+       
+      else if ( $('#payment_method').val() == 'Cash' ) {
+        exchange();
+      }
+      else if ( $('#payment_method').val() == '' ) {
+        something();
+      }
+    });
+});
+
+
+</script>
 </body>
 
 </html>

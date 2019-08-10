@@ -102,7 +102,7 @@
             $status = $row['payment_status'];
             if( $status == 'Unpaid' || $status == 'Partial' ) {
                 echo '<a href  = "#myModal'.$row['delivery_id'].'" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal'.$row['delivery_id'].'">
-                                 Add Payment
+                          Mark as Paid
                      </a>';
             }
             else{
@@ -176,7 +176,7 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <span class="modal-title">Add Payment</span>
+          <span class="modal-title"></span>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -186,10 +186,12 @@
                 <div class = "form-group">
                     <input type = "hidden" class = "form-control" name = "order_id" value = "<?=$or?>">
                     <input type = "hidden" class = "form-control" name = "delivery_id" value = "<?=$id2?>">
-                    <input type = "text " class = "form-control" name = "amount" placeholder="Enter amount">
+                    <input type = "hidden" class = "form-control" name = "amount" value = "<?=$row['order_total']?>">
+                   <center> Are you sure this customer is already paid ?</center> 
                 </div>
+                
                 <div class = "form-group">
-                    <button  class ="btn btn-primary btn-block" name = "submit">Submit Payment</button>
+                    <button  class ="btn btn-primary btn-block" name = "submit">Submit as paid</button>
                 </div>
             </form>
         </div>
