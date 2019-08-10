@@ -8,8 +8,8 @@
     </div>
   </div>
 <?php include 'nav-header.php';?>
-			</div>
-			<!-- search end -->
+      </div>
+      <!-- search end -->
           </div>
         </nav>
       </header>
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-12 p-0">
                     <div class="main-header">
-                        <h4>Sales Reports</h4>
+                        <h4>Delivery Reports</h4>
                         <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                             <li class="breadcrumb-item">
                                 <a href="index.html">
@@ -34,7 +34,7 @@
                             <li class="breadcrumb-item"><a href="#">Reports</a>
                             
                             </li>
-                            <li class="breadcrumb-item"><a href="payment_reports.php">Sales Reports</a>
+                            <li class="breadcrumb-item"><a href="payment_reports.php">Delivery Reports</a>
                             
                             </li>
                         </ol>
@@ -51,11 +51,34 @@
 
                  <div class = "col-sm-3">
                     <form method  = "POST">
+                      <label>Date Range</label>
                        <div class="input-daterange input-group" id="datepicker">
-                            <input type="text" class="input-sm form-control start" name="start" autocomplete="off" />
+
+                            <input type="text" class="input-sm form-control start" name="start" autocomplete="off" required="" />
                             <span class="input-group-addon">to</span>
-                            <input type="text" class="input-sm form-control end"  name="end"autocomplete="off"/>
+                            <input type="text" class="input-sm form-control end"  name="end"autocomplete="off" required="" />
                        </div>
+                       <br/>
+                       <div class="input-input-group">
+                        <label>Delivery Personel</label>
+                            <select name = "user_id" class= "form-control">
+                                <option selected disabled> Select Delivery Boy </option>
+                                <?php
+                                 include 'dbcon.php';
+                                 $query1=mysqli_query($con,"SELECT * FROM user WHERE user_type = 'delivery' ")or die(mysqli_error($con));
+                                  while ($row=mysqli_fetch_array($query1)){
+
+                                    $id = $row['user_id']
+                                 
+                                ?>
+                                <option value = "<?=$row['user_id'];?>"><?=$row['firstname']. " " .$row['lastname']?></option>
+
+                              <?php } ?>
+                            </select>
+
+
+                       </div>
+                       <br/>
                        <button class = "btn btn-primary btn-block filter" name = "generate" style = "margin-top: 5px;">Find</button>
                     </form>
                 </div>
@@ -67,34 +90,24 @@
 
                            <thead>
                             <tr>
-                                <td>Customer Name</td>
-                                <td>Date</td>
-                                <td>Address</td>
-                                <!-- <td>Mode of Payment</td> -->
                                 <td>Delivery Personel</td>
-
+                                <td>Date Ordered</td>
+                                <td>Date Delivered</td>
+                                <td>Amount Collected</td>
+                           
+                                
                                 
 
                             </tr>
              </thead>
             
               <?php
-
               include 'dbcon.php';
-                //     $mysqli = new mysqli('localhost', 'root', '', 'water_refilling');
-
-                // if (mysqli_connect_error()) {
-                //     echo mysqli_connect_error();
-                //     exit();
-                // }
-
-               
-             
-
                 if (isset($_POST['generate'])) {
                    $start = date('Y-m-d', strtotime($_POST['start']));
                    $end = date('Y-m-d', strtotime($_POST['end']));
-                   $query = "SELECT * FROM transaction  LEFT JOIN `order` ON order.order_id = transaction.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id WHERE transaction_date BETWEEN '$start' AND '$end' AND  order.payment_status = 'Paid' AND transaction_type = 'CASH' GROUP BY transaction.order_id";
+
+                   $query = "SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id LEFT JOIN user ON user.user_id = delivery.user_id WHERE order.order_date BETWEEN '$start' AND '$end' AND delivery.delivery_status ='delivered' AND delivery.user_id = '$id' ";
 
                    $data = mysqli_query($con, $query) ;
 
@@ -102,15 +115,15 @@
                        echo("Error description: " . mysqli_error($con));
                    } else {
 
-                       while ($row = mysqli_fetch_array($data)) {
+                       while ($row2 = mysqli_fetch_array($data)) {
 
                        
                            echo "
                            <tr>
-                                <td>" . $row['name'] . "</td>
-                                <td>" . $row['transaction_date'] . "</td>
-                                 <td>" . $row['address'] . "</td>
-                                <td>" . $row['amount'] . "</td>
+                                <td>" . $row2['firstname'] . " " .$row2['lastname'] . "</td>
+                                <td>" . date('F d, Y', strtotime($row2['order_date'])) . "</td>
+                                <td>" . date('F d, Y', strtotime($row2['delivery_date'])) . "</td>
+                                 <td>" . $row2['order_total'] . "</td>
                                 
                                
                               </tr>
