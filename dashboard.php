@@ -26,51 +26,52 @@
     </div>
     <!-- 4-blocks row start -->
     <div class="row m-b-30 dashboard-header">
-               
+               <?php 
+                    include 'dbcon.php';     
+                    $today=date('Y-m-d');           
+                    //echo $today;
+                    $query=mysqli_query($con,"SELECT *,COUNT(*) as count FROM delivery natural join `order` natural join customer where delivery_date='$today' group by delivery_status")or die(mysqli_error($con));
+                          while ($row=mysqli_fetch_array($query)){
+                            if ($row['delivery_status']=="pending")
+                              {  
+                                $color="warning";
+                                $icon="shield";
+                              }
+                            else
+                            {
+                                $color="success";
+                                $icon="check";
+                            }
+                ?>  
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
-                        <span>Products</span>
-                        <h2 class="dashboard-total-products counter">4500</h2>
-                        <span class="label label-warning">Orders</span>New Orders
-                        <div class="side-box bg-warning">
-                            <i class="icon-social-soundcloud"></i>
+                        <span><?php echo strtoupper($row['delivery_status']);?></span>
+                        <h2 class="dashboard-total-products counter"><?php echo $row['count'];?></h2>
+                        <span class="label label-<?php echo $color;?>">Deliveries</span>
+                        <div class="side-box bg-<?php echo $color;?>">
+                            <i class="icon-<?php echo $icon;?>"></i>
                         </div>
                     </div>
                 </div>
+                <?php }?>
+                <?php 
+                    $query1=mysqli_query($con,"SELECT *,COUNT(*) as total FROM delivery natural join `order` natural join customer where delivery_date='$today'")or die(mysqli_error($con));
+                          $row1=mysqli_fetch_array($query1);
+                ?>    
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
-                        <span>Products</span>
-                        <h2 class="dashboard-total-products counter">37,500</h2>
-                        <span class="label label-primary">Sales</span>Last Week Sales
+                        <span>TOTAL DELIVERIES</span>
+                        <h2 class="dashboard-total-products"><span class="counter"><?php echo $row1['total'];?></span></h2>
+                        <span class="label label-primary">Overall</span>
                         <div class="side-box bg-primary">
-                            <i class="icon-social-soundcloud"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="col-sm-12 card dashboard-product">
-                        <span>Products</span>
-                        <h2 class="dashboard-total-products">$<span class="counter">30,780</span></h2>
-                        <span class="label label-success">Sales</span>Total Sales
-                        <div class="side-box bg-success">
-                            <i class="icon-bubbles"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-sm-6">
-                    <div class="col-sm-12 card dashboard-product">
-                        <span>Products</span>
-                        <h2 class="dashboard-total-products">$<span class="counter">30,780</span></h2>
-                        <span class="label label-danger">Views</span>Views Today
-                        <div class="side-box bg-danger">
-                            <i class="icon-bubbles"></i>
+                            <i class="icon-rocket"></i>
                         </div>
                     </div>
                 </div>
 
             </div>
             <!-- 4-blocks row end -->
+            
             <!-- 1-3-block row start -->
             <div class="row">
                 <div class="col-lg-9 col-md-12">
@@ -79,7 +80,7 @@
                             <div class="row m-b-10 dashboard-total-income">
                                 <div class="col-sm-6 text-left">
                                  <div class="counter-txt">
-                                    <h6>Total Income</h6>
+                                    <h6>Total Deliveries</h6>
                                 </div>
                             </div>
                             <div class="col-sm-6">
