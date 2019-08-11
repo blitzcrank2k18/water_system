@@ -67,9 +67,9 @@
 
                            <thead>
                             <tr>
-                                <td>Customer Name</td>
+                                
                                 <td>Transaction Date</td>
-                                <td>Address</td>
+                               
                                 <!-- <td>Mode of Payment</td> -->
                                 <td>Amount</td>
 
@@ -92,7 +92,9 @@
                 if (isset($_POST['generate'])) {
                    $start = date('Y-m-d', strtotime($_POST['start']));
                    $end = date('Y-m-d', strtotime($_POST['end']));
-                   $query = "SELECT * FROM transaction  LEFT JOIN `order` ON order.order_id = transaction.order_id WHERE transaction_date BETWEEN '$start' AND '$end' AND  order.payment_status = 'Paid' AND transaction_type = 'CASH' GROUP BY transaction.order_id";
+
+
+                   $query = "SELECT CAST(order_date as date), transaction_date,  SUM(order_total) as total_order_total  FROM transaction  LEFT JOIN `order` ON order.order_id = transaction.order_id WHERE CAST(order_date as date)   BETWEEN '$start' AND '$end' AND  order.payment_status = 'Paid' AND transaction_type = 'CASH' GROUP BY CAST(order_date as date)";
 
                    $data = mysqli_query($con, $query) ;
 
@@ -102,18 +104,27 @@
 
                        while ($row = mysqli_fetch_array($data)) {
 
+
+
+
+                     
+
                        
                            echo "
                            <tr>
                                
-                                <td>" . $row['transaction_date'] . "</td>
+                                <td>" . date('F d, Y', strtotime($row['CAST(order_date as date)'])) . "</td>
                                
-                                <td>" . $row['amount'] . "</td>
+                                <td>" . $row['total_order_total'] . "</td>
                                 
                                
                               </tr>
+
+                             
                              ";
                        }
+
+
                    }
                 }
                 ?>
