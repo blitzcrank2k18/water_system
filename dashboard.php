@@ -118,7 +118,6 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -126,7 +125,7 @@
                     <div class="bg-danger dashboard-resource">
                         <div class="card-block">
                             <h5 class="counter">20.85</h5>%
-                            <h5 class="resource-used">Resource Used</h5>
+                            <h5 class="resource-used">COD</h5>
                         </div>
                         <div class="card-block">
                             <span class="resource-barchart"></span>
@@ -139,7 +138,7 @@
                     <div class="bg-warning dashboard-resource m-t-5">
                         <div class="card-block">
                             <h5 class="counter">20.85</h5>%
-                            <h5 class="resource-used">Resource Used</h5>
+                            <h5 class="resource-used">Walkin</h5>
                         </div>
                         <div class="card-block">
                             <span class="resource-barchart"></span>
@@ -148,6 +147,49 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="card">
+                        <div class="main-header">
+                            <h4>Pending Deliveries</h4>
+                        </div>
+                        <div class="card-block">
+                            <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Delivery Date</th>
+                                            <th>Customer</th>
+                                            <th>Contact</th>
+                                            <th>Address</th>
+                                            <th>Total</th>
+                                            <th>Payment Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php 
+                                            include 'dbcon.php';                
+                                            $query=mysqli_query($con,"SELECT * FROM delivery natural join `order` natural join customer where delivery_status='pending' order by order_date")or die(mysqli_error($con));
+                                                while ($row=mysqli_fetch_array($query)){
+                                                ?>  
+                                              <tr>
+                                                 <td><?php echo $row['order_id'];?>
+                                                 <td><?php echo $row['delivery_date'];?>
+                                                 <td><?php echo $row['name'];?>
+                                                 <td><?php echo $row['contact_number'];?>
+                                                 <td><?php echo $row['address'];?></td>
+                                                 <td><?php echo $row['order_total'];?></td>
+                                                 <td><?php echo $row['payment_status'];?></td>
+                                                         
+                                              </tr>
+                                                             
+                                          <?php }?>
+                                        </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <!-- 1-3-block row end -->
 
         <!-- 3-1-block start -->

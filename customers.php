@@ -63,7 +63,7 @@
                                 <textarea class = "form-control" name = "address" placeholder="Enter Address" required></textarea>
                             </div>
                             <div class = "form-group">
-                                <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number" required>
+                                <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number 639xxxxxxxxx" required>
                             </div>
                             <div class = "form-group">
                                 <select class="form-control" name="type">
