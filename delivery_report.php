@@ -93,7 +93,7 @@
                                 <td>Delivery Personel</td>
                                 <td>Date Ordered</td>
                                 <td>Date Delivered</td>
-                                <td>Amount Collected</td>
+                                <td>Customer Name </td>
                            
                                 
                                 
@@ -107,7 +107,7 @@
                    $start = date('Y-m-d', strtotime($_POST['start']));
                    $end = date('Y-m-d', strtotime($_POST['end']));
 
-                   $query = "SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id LEFT JOIN user ON user.user_id = delivery.user_id WHERE order.order_date BETWEEN '$start' AND '$end' AND delivery.delivery_status ='delivered' AND delivery.user_id = '$id' ";
+                   $query = "SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id LEFT JOIN user ON user.user_id = delivery.user_id WHERE order.order_date BETWEEN '$start' AND '$end' AND delivery.delivery_status ='delivered' AND delivery.user_id = '$id' ORDER BY delivery.delivery_date DESC ";
 
                    $data = mysqli_query($con, $query) ;
 
@@ -117,13 +117,15 @@
 
                        while ($row2 = mysqli_fetch_array($data)) {
 
+                        $customer_name = $row2['name'];
+
                        
                            echo "
                            <tr>
                                 <td>" . $row2['firstname'] . " " .$row2['lastname'] . "</td>
                                 <td>" . date('F d, Y', strtotime($row2['order_date'])) . "</td>
-                                <td>" . date('F d, Y', strtotime($row2['delivery_date'])) . "</td>
-                                 <td>" . $row2['order_total'] . "</td>
+                                <td><span class = 'badge badge-success'>" . date('F d, Y', strtotime($row2['delivery_date'])) . "</span></td>
+                                 <td>" . $customer_name. "</td>
                                 
                                
                               </tr>

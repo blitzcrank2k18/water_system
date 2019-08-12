@@ -73,7 +73,19 @@
 
 
 
+<!-- Amchart Script -->
 
+  <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="http://www.amcharts.com/lib/3/serial.js"></script>
+  <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+  <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+
+
+
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 
 
 
