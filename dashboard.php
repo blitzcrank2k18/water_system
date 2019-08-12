@@ -1,5 +1,26 @@
 <?php include 'session.php' ;?>
 <?php include 'header.php' ;?>
+
+<style>
+    
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+    }
+
+    #exportChart {
+      font-size: 18px;
+      padding: 5px 10px;
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      z-index: 10;
+    }
+
+
+
+
+</style>
  <body class="sidebar-mini fixed">
     <div class="loader-bg">
         <div class="loader-bar">
@@ -21,7 +42,7 @@
    <div class="container-fluid">
     <div class="row">
         <div class="main-header">
-            <h4>Dashboard</h4>
+            <h4>Daily Counter</h4>
         </div>
     </div>
     <!-- 4-blocks row start -->
@@ -36,27 +57,55 @@
                               {  
                                 $color="warning";
                                 $icon="shield";
+                                $status = 'To be delivered';
                               }
                             else
                             {
                                 $color="success";
                                 $icon="check";
+                                 $status = 'Already Delivered';
                             }
                 ?>  
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
                         <span><?php echo strtoupper($row['delivery_status']);?></span>
                         <h2 class="dashboard-total-products counter"><?php echo $row['count'];?></h2>
-                        <span class="label label-<?php echo $color;?>">Deliveries</span>
+                        <span class="label label-<?php echo $color;?>"><?=$status?></span>
                         <div class="side-box bg-<?php echo $color;?>">
                             <i class="icon-<?php echo $icon;?>"></i>
                         </div>
                     </div>
                 </div>
                 <?php }?>
+
+
+                <?php 
+
+                  $date_val = date('Y-m-d');
+                    $query12=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Walkin' AND CAST(order_date as date) = '$date_val' ")or die(mysqli_error($con));
+                          $row12=mysqli_fetch_array($query12);
+
+                          $order_type = $row12['order_type'];
+
+
+                ?>    
+                <div class="col-lg-3 col-sm-6">
+                    <div class="col-sm-12 card dashboard-product">
+                        <span>TOTAL WALKIN CUSTOMER</span>
+                        <h2 class="dashboard-total-products"><span class="counter"><?php echo $row12['total'];?></span></h2>
+                        <span class="label label-danger"><?=$order_type?></span>
+                        <div class="side-box bg-danger">
+                            <i class="icon-rocket"></i>
+                        </div>
+                    </div>
+                </div> 
+
                 <?php 
                     $query1=mysqli_query($con,"SELECT *,COUNT(*) as total FROM delivery natural join `order` natural join customer where delivery_date='$today'")or die(mysqli_error($con));
                           $row1=mysqli_fetch_array($query1);
+
+
+
                 ?>    
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
@@ -64,91 +113,20 @@
                         <h2 class="dashboard-total-products"><span class="counter"><?php echo $row1['total'];?></span></h2>
                         <span class="label label-primary">Overall</span>
                         <div class="side-box bg-primary">
-                            <i class="icon-rocket"></i>
+                            <i class="icon-social-soundcloud"></i>
                         </div>
                     </div>
                 </div>
+
+
+                  
 
             </div>
             <!-- 4-blocks row end -->
             
             <!-- 1-3-block row start -->
-            <div class="row">
-                <div class="col-lg-9 col-md-12">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="row m-b-10 dashboard-total-income">
-                                <div class="col-sm-6 text-left">
-                                 <div class="counter-txt">
-                                    <h6>Total Deliveries</h6>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="icofont icofont-link-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-block row">
-                        <div class="col-sm-12">
-                            <div id="areachart"></div>
-                        </div>
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-3 col-xs-6 income-per-day">
-                                <p>Today</p>
-                                $
-                                <h6 class="counter">6734.00</h6>
-                            </div>
-                            <div class="col-sm-3 col-xs-6 income-per-day">
-                                <p>Last Week</p>
-                                $
-                                <h6 class="counter">58789.00</h6>
-                            </div>
-                            <div class="col-sm-3 col-xs-6 income-per-day">
-                                <p>Total Orders</p>
-                                $
-                                <h6 class="counter">658</h6>
-                            </div>
-                            <div class="col-sm-3 col-xs-6 income-per-day">
-                                <p>Total Income</p>
-                                $
-                                <h6 class="counter">$85749.00</h6>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="bg-danger dashboard-resource">
-                        <div class="card-block">
-                            <h5 class="counter">20.85</h5>%
-                            <h5 class="resource-used">COD</h5>
-                        </div>
-                        <div class="card-block">
-                            <span class="resource-barchart"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="bg-warning dashboard-resource m-t-5">
-                        <div class="card-block">
-                            <h5 class="counter">20.85</h5>%
-                            <h5 class="resource-used">Walkin</h5>
-                        </div>
-                        <div class="card-block">
-                            <span class="resource-barchart"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-                <div class="col-lg-9 col-md-12">
+ <div class="row">
+                <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="main-header">
                             <h4>Pending Deliveries</h4>
@@ -189,7 +167,25 @@
                         </div>
                     </div>
                 </div>
+</div>
+
+            <div class = "row">
+                 <div class="main-header">
+                    <h4>Overall Statisctics</h4>
+                </div>
+                <div class = "col-lg-5">
+                    <div class = "card">
+                        <div class = "main-header">
+                            <h4>Overall Data for Order Types</h4>
+                        </div>
+                         <div class = "card-block" id="chartdiv">
+                    </div>
+                   
+                    </div>
+                </div>
             </div>
+            
+       
         <!-- 1-3-block row end -->
 
         <!-- 3-1-block start -->
@@ -207,6 +203,30 @@
 
       <!-- Required Jqurey -->
    <?php include 'index-script.php';?>
+
+
+
+
+   <script type="text/javascript">
+    var chart = AmCharts.makeChart("chartdiv", {
+  "type": "pie",
+  "theme": "light",
+  "dataProvider": [{
+    "country": "For Delivery",
+    "litres": <?php echo $row1['total'];?>
+  }, {
+    "country": "Walkin",
+    "litres": <?php echo $row12['total'];?>,
+    "color": "#ff0000"
+  }],
+  "valueField": "litres",
+  "titleField": "country",
+  "colorField": "color",
+  "balloon": {
+    "fixedPosition": true
+  }
+});
+   </script>
 </body>
 
 </html>

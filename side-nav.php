@@ -77,12 +77,12 @@
                     </li>
 
                    
-
+<!-- 
                     <li class="treeview">
                         <a class="waves-effect waves-dark" href="users.php">
                             <i class="icon-graph"></i><span> Inventory Reports</span>
                         </a>                
-                    </li>
+                    </li> -->
 
                     
 

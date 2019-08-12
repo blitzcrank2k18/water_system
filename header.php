@@ -69,6 +69,7 @@
 
     <!-- bash syntaxhighlighter css -->
     <link type="text/css" rel="stylesheet" href="assets/plugins/syntaxhighlighter/styles/shCoreDjango.css"/>
+    <link type="text/css" rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 
 
 
@@ -82,6 +83,10 @@
   <script src="https://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
 
 
+
+  <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
 
 

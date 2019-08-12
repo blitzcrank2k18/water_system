@@ -52,7 +52,7 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-sm-12 table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered" id = "myTable">
                                         <thead>
                                         <tr>
                                        
