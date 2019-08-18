@@ -93,7 +93,7 @@
                     <div class="col-sm-12 card dashboard-product">
                         <span>TOTAL WALKIN CUSTOMER</span>
                         <h2 class="dashboard-total-products"><span class="counter"><?php echo $row12['total'];?></span></h2>
-                        <span class="label label-danger"><?=$order_type?></span>
+                        <span class="label label-danger">Walkin</span>
                         <div class="side-box bg-danger">
                             <i class="icon-rocket"></i>
                         </div>
@@ -125,7 +125,7 @@
             <!-- 4-blocks row end -->
             
             <!-- 1-3-block row start -->
- <div class="row">
+        <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="main-header">
@@ -194,7 +194,21 @@
    
 
            
-    
+     <?php                   
+              $query21=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Walkin' ")or die(mysqli_error($con));
+                    $row21=mysqli_fetch_array($query21);
+                    $order_type = $row21['order_type'];
+
+
+     ?>    
+
+     <?php                   
+              $query22=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Delivery' ")or die(mysqli_error($con));
+                    $row22=mysqli_fetch_array($query22);
+                    $order_type = $row22['order_type'];
+
+
+     ?>   
 
 
 
@@ -213,10 +227,10 @@
   "theme": "light",
   "dataProvider": [{
     "country": "For Delivery",
-    "litres": <?php echo $row1['total'];?>
+    "litres": <?php echo $row22['total'];?>
   }, {
     "country": "Walkin",
-    "litres": <?php echo $row12['total'];?>,
+    "litres": <?php echo $row21['total'];?>,
     "color": "#ff0000"
   }],
   "valueField": "litres",
