@@ -186,7 +186,7 @@
                 <div class = "form-group">
                     <input type = "hidden" class = "form-control" name = "order_id" value = "<?=$or?>">
                     <input type = "hidden" class = "form-control" name = "delivery_id" value = "<?=$id2?>">
-                    <input type = "text" class = "form-control" name = "amount" value = "<?=$row['balance']?>">
+                    <input type = "hidden" class = "form-control" name = "amount" value = "<?=$row['balance']?>">
                    <center> Are you sure this customer is already paid ?</center> 
                 </div>
                 
