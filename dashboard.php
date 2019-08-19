@@ -93,7 +93,7 @@
                     <div class="col-sm-12 card dashboard-product">
                         <span>TOTAL WALKIN CUSTOMER</span>
                         <h2 class="dashboard-total-products"><span class="counter"><?php echo $row12['total'];?></span></h2>
-                        <span class="label label-danger"><?=$order_type?></span>
+                        <span class="label label-danger">Walkin</span>
                         <div class="side-box bg-danger">
                             <i class="icon-rocket"></i>
                         </div>
@@ -103,9 +103,6 @@
                 <?php 
                     $query1=mysqli_query($con,"SELECT *,COUNT(*) as total FROM delivery natural join `order` natural join customer where delivery_date='$today'")or die(mysqli_error($con));
                           $row1=mysqli_fetch_array($query1);
-
-
-
                 ?>    
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
@@ -196,9 +193,16 @@
            
     
 
+      <?php 
+                    $query21=mysqli_query($con,"SELECT *,COUNT(*) as total_count FROM delivery natural join `order` natural join customer")or die(mysqli_error($con));
+                          $row21=mysqli_fetch_array($query21);
+       ?>   
 
-
-
+      <?php    
+         $query22=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total_id FROM `order`  where  order_type = 'Walkin' ")or die(mysqli_error($con));
+            $row22=mysqli_fetch_array($query22);
+             $order_type = $row22['order_type'];
+      ?>  
 
 
       <!-- Required Jqurey -->
@@ -213,10 +217,10 @@
   "theme": "light",
   "dataProvider": [{
     "country": "For Delivery",
-    "litres": <?php echo $row1['total'];?>
+    "litres": <?php echo $row21['total_count'];?>
   }, {
     "country": "Walkin",
-    "litres": <?php echo $row12['total'];?>,
+    "litres": <?php echo $row22['total_id'];?>,
     "color": "#ff0000"
   }],
   "valueField": "litres",

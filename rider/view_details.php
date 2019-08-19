@@ -45,7 +45,15 @@
                 $query1=mysqli_query($con,"SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id LEFT JOIN order_details ON order.order_id = order_details.order_id WHERE customer.customer_id = '$id' AND delivery_id = $did ")or die(mysqli_error($con));
                     $row=mysqli_fetch_array($query1);
                     $id2=$row['delivery_id'];   
-                    $or = $row['order_id'];                   
+                    $or = $row['order_id']; 
+
+                    $balance = $row['balance'];
+                    if($balance <= 0){
+                      $balance = '<span class = "badge badge-success">Already Paid</span>';
+                    }  
+                    else{
+                      $balance = $balance;
+                    }                
             ?>  
             <table class = "table table-responsive tec">
                     <tr>
@@ -62,7 +70,7 @@
                     </tr>
                      <tr>
                         <td>Total : </td>
-                        <td><a href = "#">Php. <?=$row['balance']?></a></td>
+                        <td><a href = "#"><?=$balance?></a></td>
                     </tr>
 
                          <?php 

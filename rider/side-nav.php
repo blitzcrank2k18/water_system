@@ -40,11 +40,11 @@
                             <i class="icon-speedometer"></i><span> Dashboard</span>
                         </a>                
                     </li>
-                    <li class="treeview">
+                   <!--  <li class="treeview">
                         <a class="waves-effect waves-dark" href="dashboard.php">
                             <i class="icon-speedometer"></i><span> Delivered List</span>
                         </a>                
-                    </li>
+                    </li> -->
                 </ul>
             </section>
         </aside>    

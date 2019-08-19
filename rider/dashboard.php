@@ -39,13 +39,22 @@
                 $query1=mysqli_query($con,"SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id WHERE user_id = $session_id AND delivery_status = 'pending'")or die(mysqli_error($con));
                     while ($row=mysqli_fetch_array($query1)){
                     $id=$row['delivery_id'];     
-                    $status = $row['payment_status'];                 
+                    $status = $row['payment_status'];  
+                    $balance  = $row['balance'];
+
+                    if($balance <= 0){
+                        $balance = 'Already Paid';
+                    }
+                    else{
+                        $balance = 'Php.'.$balance;
+                    }
+
             ?>  
                   <a href = "view_details.php?id=<?=$row['customer_id']?>&delivery_id=<?=$row['delivery_id']?>">
             <div class="col-lg-3 col-sm-6">
                 <div class="col-sm-12 card dashboard-product">
                     <h4><b><?=$row['name']?></b></h4>
-                    <h2 class="dashboard-total-products"><span>Php.</span><?=$row['balance']?></h2>
+                    <h2 class="dashboard-total-products"><span></span><?=$balance?></h2>
 
                      
                   <?php
