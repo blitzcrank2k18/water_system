@@ -68,6 +68,14 @@
                             <div class = "form-group">
                                 <input id = "password"  type = "text" class = "form-control" name = "password" placeholder = "Password" required>
                             </div>
+
+                             <div class = "form-group">
+                                <select name = "user_type" class = "form-control">
+                                    <option selected disabled> -- SELECT USER ROLE --</option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Delivery Personel">Delivery Personel</option>
+                                </select>
+                            </div>
                           
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "save"><i class = "fa fa-save"></i> Save</button>
@@ -90,7 +98,7 @@
                         <div class="card-block">
                             <div class="row">
                                 <div class="col-sm-12 table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered" id = "myTable">
                                         <thead>
                                         <tr>
                                        
@@ -98,13 +106,14 @@
                                             <th>Last Name</th>
                                             <th>Username</th>
                                             <th>Password</th>
+                                            <th>User Type</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM `user ")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM `user` ORDER BY user_type ASC")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query1)){
                                                 $id=$row['user_id'];                      
                                             ?>  
@@ -113,6 +122,7 @@
                                                  <td><?php echo $row['lastname'];?></td>
                                                   <td><?php echo $row['username'];?></td>
                                                   <td><?php echo $row['password'];?></td>
+                                                  <td><?php echo $row['user_type'];?></td>
                                                 <td>
                                                 <a href="update_user.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
                                                   

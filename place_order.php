@@ -61,7 +61,7 @@
                                     <option selected="selected">--Select Customer--</option>
                                 <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM customer order by name")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM customer  WHERE status = 'Active' order by name")or die(mysqli_error($con));
                                                 while ($row1=mysqli_fetch_array($query1)){
                                                 $id=$row1['customer_id'];                      
                                                 ?>                                     

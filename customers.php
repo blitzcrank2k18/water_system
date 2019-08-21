@@ -66,7 +66,7 @@
                                 <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number 639xxxxxxxxx" required>
                             </div>
                             <div class = "form-group">
-                                <select class="form-control" name="type">
+                                <select class="form-control" name="type_id">
                                 <?php 
                                             include 'dbcon.php';                
                                             $query1=mysqli_query($con,"SELECT * FROM type")or die(mysqli_error($con));
@@ -106,6 +106,7 @@
                                             <th>Address</th>
                                             <th>Contact No.</th>
                                             <th>Type</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -121,6 +122,16 @@
                                                  <td><?php echo $row['address'];?></td>
                                                  <td><?php echo $row['contact_number'];?></td>
                                                  <td><?php echo $row['type'];?></td>
+                                                 <td>
+                                                    <?php
+                                                    if($row['status'] == 'Active')
+                                                    {
+                                                         echo '<span class = "badge badge-success">Active</span>';
+                                                    }
+                                                    else{
+                                                        echo '<span class = "badge badge-danger">Deactivated</span>';
+                                                    }
+                                                 ?></td>
                                                  
                                                 <td>
                                                 <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>

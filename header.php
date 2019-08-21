@@ -109,5 +109,8 @@
 .alert{
     display: none !important;
 }
+table.dataTable thead th, table.dataTable thead td{
+    border-bottom: 1px solid #ccc !important;
+}
 </style>
  </head>

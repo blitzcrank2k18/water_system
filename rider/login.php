@@ -12,7 +12,7 @@ $salt="a1Bz20ydqelm8m1wql";
 $pass=$salt.$pass;
 
 
-$query=mysqli_query($con,"select * from user where password='$pass' AND user_type = 'Delivery' ")or die(mysqli_error($con));
+$query=mysqli_query($con,"select * from user where password='$pass' AND user_type = 'Delivery Personel' and status = 'Active' ")or die(mysqli_error($con));
 
 		$row=mysqli_fetch_array($query);
            $id=$row['user_id'];   

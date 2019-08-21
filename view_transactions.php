@@ -88,11 +88,13 @@
                                         <thead>
                                         <tr>
                                        
-                                            <th>Order ID</th>
+                                            
                                             <th>Order Date</th>
                                             <th>Customer</th>
                                             <th>Order Type</th>
-                                            <th>Total</th>
+                                            <th>Price</th>
+                                            <th>Charge</th>
+                                            <th>Total price with charge</th>
                                             <th>Payment Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -106,10 +108,12 @@
                                                    $status = $row['payment_status'];
                                                 ?>  
                                               <tr>
-                                                 <td><?php echo $row['order_id'];?></td>
-                                                 <td><?php echo $row['order_date'];?></td>
+                                                 
+                                                 <td><?php echo date('F d, Y', strtotime($row['order_date']))?></td>
                                                  <td><?php echo $row['name'];?></td>
                                                  <td><?php echo $row['order_type'];?></td>
+                                                 <td><?php echo number_format($row['order_total'] - $row['charge'],2)?></td>
+                                                 <td><?php echo $row['charge'];?></td>
                                                  <td><?php echo $row['order_total'];?></td>
                                                  <td><?php echo $row['payment_status'];?></td>
                                                 <td>
@@ -117,10 +121,13 @@
                                                   <?php 
 
                                                   if($status =='Unpaid'){
-                                                    echo '<a href = "#myModal'.$row['order_id'].'" class="btn btn-warning btn-xs" data-target = "#myModal'.$row['order_id'].'" data-toggle = "modal"><i class = "fa fa-money"></i> Unpaid (click here to pay)</a>';
+                                                    echo '<a href = "#myModal'.$row['order_id'].'" class="btn btn-danger btn-xs" data-target = "#myModal'.$row['order_id'].'" data-toggle = "modal"><i class = "fa fa-money"></i> Unpaid </a>';
+                                                  }
+                                                  else if($status =='Partially Paid'){
+                                                    echo '<a href = "#myModal'.$row['order_id'].'" class="btn btn-warning btn-xs" data-target = "#myModal'.$row['order_id'].'" data-toggle = "modal"><i class = "fa fa-money"></i> Partially Paid </a>';
                                                   }
                                                   else{
-                                                    echo '<a href="#" class="btn btn-primary btn-xs" disabled><i class = "fa fa-money"></i> Already Paid</a>';
+                                                    echo '<a href="" class="btn btn-success btn-xs" disabled><i class = "fa fa-money"></i> Already Paid</a>';
                                                   } ?>
                                                 
                                                   
@@ -135,7 +142,8 @@
                                                 while ($row1=mysqli_fetch_array($query1)){
                                                 ?>  
                                               <tr>
-                                                 <td colspan="3">***</td>
+                                                 <td colspan="2">***</td>
+                                                 <td colspan="2">Ordered Product and quantity</td>
                                                  <td><?php echo $row1['order_qty'];?>
                                                  <td><?php echo $row1['product_name'];?></td>
                                                  <td><?php echo $row1['order_price'];?></td>
@@ -163,6 +171,13 @@
 </div>
 
 
+
+
+
+
+
+
+<?php include 'scripts.php';?>
 
 <div class="modal" id="myModal<?=$row['order_id']?>">
     <div class="modal-dialog">
@@ -193,11 +208,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-<?php include 'scripts.php';?>
 </body>
 
 </html>

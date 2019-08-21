@@ -80,7 +80,7 @@
                                 <input id = "username" type = "text" class = "form-control" name = "contact_number" value = "<?=$row['contact_number'];?>">
                             </div>
                             <div class = "form-group">
-                                <select class="form-control" name="type">
+                                <select class="form-control" name="type_id">
                                     <option value="<?php echo $row['type_id'];?>"><?php echo $row['type']." (".$row['discount'];?>% disc)</option>
                                 <?php 
                                             $query1=mysqli_query($con,"SELECT * FROM type where type_id<>'$row[type_id]'")or die(mysqli_error($con));
@@ -89,6 +89,13 @@
                                                 ?>                                     
                                     <option value="<?php echo $id;?>"><?php echo $row1['type']." (".$row1['discount'];?>% disc)</option>
                                 <?php }?>
+                                </select>
+                            </div>
+                            <div class = "form-group">
+                                <select name = "status" class = "form-control">
+                                    <option selected  value = "<?=$row['status']?>" ><?=$row['status']?></option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">In-active</option>
                                 </select>
                             </div>
                             <div class = "form-group">

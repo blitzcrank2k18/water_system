@@ -82,6 +82,21 @@
                             <div class = "form-group">
                                 <input id = "password"  type = "text" class = "form-control" name = "password" value = "<?=$row['password'];?>">
                             </div>
+
+                            <div class = "form-group">
+                                <select name = "user_type" class = "form-control">
+                                    <option selected value = "<?=$row['user_type']?>" > <?=$row['user_type']?></option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Delivery Personel">Delivery Personel</option>
+                                </select>
+                            </div>
+                            <div class = "form-group">
+                                <select name = "status" class = "form-control">
+                                    <option selected  value = "<?=$row['status']?>" ><?=$row['status']?></option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">In-active</option>
+                                </select>
+                            </div>
                           
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "update"><i class = "fa fa-save"></i> Save</button>

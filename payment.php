@@ -89,7 +89,7 @@
                                     <option selected="selected">--Select Delivery Boy--</option>
                                 <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM user where user_type='delivery' order by lastname")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM user where user_type='Delivery Personel' order by lastname")or die(mysqli_error($con));
                                                 while ($row1=mysqli_fetch_array($query1)){
                                                 $id=$row1['user_id'];                      
                                                 ?>                                     
