@@ -83,8 +83,7 @@
 
                   $date_val = date('Y-m-d');
                     $query12=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Walkin' AND CAST(order_date as date) = '$date_val' ")or die(mysqli_error($con));
-                          $row12=mysqli_fetch_array($query12);
-
+                          $row12=mysqli_fetch_array($query12);  
                           $order_type = $row12['order_type'];
 
 
@@ -190,26 +189,10 @@
 
    
 
-           
-     <?php                   
-              $query21=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Walkin' ")or die(mysqli_error($con));
-                    $row21=mysqli_fetch_array($query21);
-                    $order_type = $row21['order_type'];
-
-
-     ?>    
-
-     <?php                   
-              $query22=mysqli_query($con,"SELECT *, CAST(order_date as date), COUNT(order_id) as total FROM `order`  where  order_type = 'Delivery' ")or die(mysqli_error($con));
-                    $row22=mysqli_fetch_array($query22);
-                    $order_type = $row22['order_type'];
-
-
-     ?>   
-
+  
       <?php 
-                    $query21=mysqli_query($con,"SELECT *,COUNT(*) as total_count FROM delivery natural join `order` natural join customer")or die(mysqli_error($con));
-                          $row21=mysqli_fetch_array($query21);
+        $query21=mysqli_query($con,"SELECT *,COUNT(*) as total_count FROM delivery natural join `order` natural join customer")or die(mysqli_error($con));
+        $row21=mysqli_fetch_array($query21);
        ?>   
 
       <?php    
@@ -225,24 +208,16 @@
 
 
 
-   <script type="text/javascript">
+<script type="text/javascript">
     var chart = AmCharts.makeChart("chartdiv", {
   "type": "pie",
   "theme": "light",
   "dataProvider": [{
     "country": "For Delivery",
-<<<<<<< HEAD
     "litres": <?php echo $row21['total_count'];?>
   }, {
     "country": "Walkin",
-    "litres": <?php echo $row22['total_id'];?>,
-=======
-    "litres": <?php echo $row22['total'];?>
-  }, {
-    "country": "Walkin",
-    "litres": <?php echo $row21['total'];?>,
->>>>>>> d5e97f671f25388ca736a59d044a5c7102219c18
-    "color": "#ff0000"
+    "litres": <?php echo $row22['total_id'];?>
   }],
   "valueField": "litres",
   "titleField": "country",

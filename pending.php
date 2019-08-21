@@ -63,7 +63,7 @@
                                             <th>Address</th>
                                             <th>Total</th>
                                             <th>Payment Status</th>
-                                            <th>Action</th>
+                                            <th>Delivery Status</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -80,11 +80,7 @@
                                                  <td><?php echo $row['address'];?></td>
                                                  <td><?php echo $row['order_total'];?></td>
                                                  <td><?php echo $row['payment_status'];?></td>
-                                        
-                                                <td>
-                                                <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
-                                                  
-                                                </td>
+                                                 <td><span class = "badge badge-success"><?php echo $row['delivery_status'];?></a></td>
                                                               
                                               </tr>
                                                              
