@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2019 at 04:49 PM
+-- Generation Time: Aug 30, 2019 at 05:12 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -254,10 +254,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`, `user_type`) VALUES
-(1, 'admin', 'a1Bz20ydqelm8m1wqlb8fe4f782a98ed5ca99e3cf2a2565e1a', 'CHMSC TALISAY', 'USER', 'Active', 'Administrator'),
+(1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC TALISAY', 'USER', 'Active', 'Administrator'),
 (3, 'admin', 'a1Bz20ydqelm8m1wql8f1d43620bc6bb580df6e80b0dc05c48', 'Juvic', 'Corugda', 'Active', 'Delivery Personel'),
 (4, 'alex', 'a1Bz20ydqelm8m1wql590cebfaecd94ff87e6c7b2a43f85fda', 'Alexandra D', 'Delos Santos', 'Active', 'Administrator'),
-(5, 'jer', 'a1Bz20ydqelm8m1wql418d502bb0840cc603246ba5d77a68c5', 'Jerwin', 'CHMSC', 'Active', 'Delivery Personel');
+(5, 'jer', 'a1Bz20ydqelm8m1wql8f192fcf63386fa01b7ba156f3022e00', 'Jerwin', 'CHMSC', 'Active', 'Delivery Personel');
 
 --
 -- Indexes for dumped tables
