@@ -112,7 +112,7 @@
                                         <tbody>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM `product ")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM `product` ")or die(mysqli_error($con));
                                                 while ($row=mysqli_fetch_array($query1)){
                                                 $id=$row['product_id'];                      
                                                 ?>  
