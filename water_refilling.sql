@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 30, 2019 at 05:12 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Host: localhost
+-- Generation Time: Sep 05, 2019 at 08:11 AM
+-- Server version: 5.7.27-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,7 +40,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `name`, `address`, `contact_number`, `type_id`, `status`) VALUES
-(1, 'Jerwin Pereys', 'Sitio Cabug EB Magalona', '09115465421', 2, 'Inactive'),
+(1, 'Jerwin Pereys', 'Sitio Cabug EB Magalona', '09115465421', 2, 'Active'),
 (2, 'Natlie Hearts', 'Tres Fuentes Street Barangay Rizal Silay City', '0918171161', 1, 'Inactive'),
 (3, 'Jilliane', 'Busay', '09656565', 2, 'Active'),
 (4, 'Hershey', 'tres fuentes street barangay rizal silay city', '+639177701151', 1, 'Active');
@@ -79,9 +77,14 @@ INSERT INTO `delivery` (`delivery_id`, `order_id`, `delivery_date`, `delivery_st
 (11, 16, '2019-08-21', 'Delivered', 3),
 (12, 17, '2019-08-22', 'delivered', 3),
 (13, 18, '2019-08-22', 'Delivered', 3),
-(14, 1, '2019-08-21', 'pending', 3),
-(15, 2, '2019-08-22', 'pending', 3),
-(16, 3, '2019-08-22', 'pending', 3);
+(14, 1, '2019-08-21', 'delivered', 3),
+(15, 2, '2019-08-22', 'Delivered', 3),
+(16, 3, '2019-08-22', 'Delivered', 3),
+(17, 4, '2019-09-01', 'delivered', 3),
+(18, 5, '2019-08-31', 'delivered', 3),
+(19, 6, '2019-09-01', 'delivered', 3),
+(20, 6, '2019-09-01', 'delivered', 3),
+(21, 7, '2019-09-01', 'delivered', 3);
 
 -- --------------------------------------------------------
 
@@ -109,8 +112,13 @@ CREATE TABLE `order` (
 
 INSERT INTO `order` (`order_id`, `customer_id`, `order_date`, `order_total`, `order_status`, `order_type`, `payment`, `payment_status`, `charge`, `disc`, `balance`) VALUES
 (1, 3, '2019-08-21 17:43:14', '71.50', 'confirmed', 'Delivery', '71.50', 'Paid', '6.50', '0.00', '0.00'),
-(2, 3, '2019-08-21 17:54:24', '71.50', 'confirmed', 'Delivery', '0.00', 'Unpaid', '6.50', '0.00', '71.50'),
-(3, 3, '2019-08-21 18:03:24', '71.50', 'confirmed', 'Delivery', '70.00', 'Partially Paid', '6.50', '0.00', '1.50');
+(2, 3, '2019-08-21 17:54:24', '71.50', 'confirmed', 'Delivery', '0.00', 'Paid', '6.50', '0.00', '0.00'),
+(3, 3, '2019-08-21 18:03:24', '71.50', 'confirmed', 'Delivery', '70.00', 'Paid', '6.50', '0.00', '0.00'),
+(4, 3, '2019-08-30 21:24:16', '214.50', '', 'Delivery', '0.00', '', '19.50', '0.00', '0.00'),
+(5, 4, '2019-08-30 21:25:35', '175.50', '', 'Delivery', '0.00', '', '0.00', '19.50', '0.00'),
+(6, 4, '2019-08-30 21:27:54', '148.50', '', 'Delivery', '0.00', '', '0.00', '16.50', '0.00'),
+(7, 3, '2019-08-30 21:31:18', '511.50', '', 'Delivery', '0.00', '', '46.50', '0.00', '0.00'),
+(8, 1, '2019-09-04 16:42:45', '775.00', 'confirmed', 'Walkin', '775.00', 'Paid', '0.00', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,17 @@ INSERT INTO `order_details` (`order_details_id`, `order_id`, `product_id`, `orde
 (3, 2, 1, 1, '30.00', '30.00'),
 (4, 2, 2, 1, '35.00', '35.00'),
 (5, 3, 1, 1, '30.00', '30.00'),
-(6, 3, 2, 1, '35.00', '35.00');
+(6, 3, 2, 1, '35.00', '35.00'),
+(7, 4, 1, 3, '30.00', '90.00'),
+(8, 4, 2, 3, '35.00', '105.00'),
+(9, 5, 1, 3, '30.00', '90.00'),
+(10, 5, 2, 3, '35.00', '105.00'),
+(11, 6, 1, 2, '30.00', '60.00'),
+(12, 6, 2, 3, '35.00', '105.00'),
+(13, 7, 1, 12, '30.00', '360.00'),
+(14, 7, 2, 3, '35.00', '105.00'),
+(15, 8, 1, 20, '30.00', '600.00'),
+(16, 8, 2, 5, '35.00', '175.00');
 
 -- --------------------------------------------------------
 
@@ -210,7 +228,18 @@ CREATE TABLE `transaction` (
 INSERT INTO `transaction` (`transaction_id`, `order_id`, `transaction_date`, `transaction_type`, `amount`) VALUES
 (1, 1, '2019-08-21 17:43:57', 'Cash', '71.50'),
 (2, 2, '2019-08-21 17:54:33', 'Cash', '0.00'),
-(3, 3, '2019-08-21 18:03:33', 'Cash', '70.00');
+(3, 3, '2019-08-21 18:03:33', 'Cash', '70.00'),
+(4, 2, '2019-08-30 09:40:13', 'Cash', '71.50'),
+(5, 3, '2019-08-30 09:40:20', 'Cash', '1.50'),
+(6, 4, '2019-08-30 21:24:35', 'Cash', '0.00'),
+(7, 0, '2019-08-30 21:25:08', 'Cash', '0.00'),
+(8, 5, '2019-08-30 21:25:50', 'Cash', '0.00'),
+(9, 0, '2019-08-30 21:26:00', 'Cash', '0.00'),
+(10, 6, '2019-08-30 21:28:10', 'Cash', '100.00'),
+(11, 6, '2019-08-30 21:29:00', 'Cash', '100.00'),
+(12, 0, '2019-08-30 21:29:03', 'Cash', '0.00'),
+(13, 7, '2019-08-30 21:31:42', 'Cash', '100.00'),
+(14, 8, '2019-09-04 16:43:07', 'Cash', '775.00');
 
 -- --------------------------------------------------------
 
@@ -256,7 +285,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `firstname`, `lastname`, `status`, `user_type`) VALUES
 (1, 'admin', 'a1Bz20ydqelm8m1wql21232f297a57a5a743894a0e4a801fc3', 'CHMSC TALISAY', 'USER', 'Active', 'Administrator'),
 (3, 'admin', 'a1Bz20ydqelm8m1wql8f1d43620bc6bb580df6e80b0dc05c48', 'Juvic', 'Corugda', 'Active', 'Delivery Personel'),
-(4, 'alex', 'a1Bz20ydqelm8m1wql590cebfaecd94ff87e6c7b2a43f85fda', 'Alexandra D', 'Delos Santos', 'Active', 'Administrator'),
+(4, 'alex', 'a1Bz20ydqelm8m1wql534b44a19bf18d20b71ecc4eb77c572f', 'Alexandra D', 'Delos Santos', 'Active', 'Administrator'),
 (5, 'jer', 'a1Bz20ydqelm8m1wql8f192fcf63386fa01b7ba156f3022e00', 'Jerwin', 'CHMSC', 'Active', 'Delivery Personel');
 
 --
@@ -326,56 +355,46 @@ ALTER TABLE `user`
 --
 ALTER TABLE `customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
+  MODIFY `delivery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `order_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `personel`
 --
 ALTER TABLE `personel`
   MODIFY `personel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
