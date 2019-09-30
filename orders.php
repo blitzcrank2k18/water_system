@@ -56,14 +56,14 @@
                                         <thead>
                                         <tr>
                                        
-                                            <th>Order ID</th>
+                                            <th>Order No.</th>
                                             <th>Order Date</th>
                                             <th>Customer</th>
                                             <th>Order Type</th>
                                             <th>Payment Status</th>
                                             <th>Total</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                           <!--  <th>Action</th> -->
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -73,17 +73,17 @@
                                                 while ($row=mysqli_fetch_array($query)){
                                                 ?>  
                                               <tr>
-                                                 <td><?php echo $row['order_id'];?>
+                                                 <td>BWRS-00<?php echo $row['order_id'];?>
                                                  <td><?php echo $row['order_date'];?>
                                                  <td><?php echo $row['name'];?>
                                                  <td><?php echo $row['order_type'];?></td>
                                                  <td><?php echo $row['payment_status'];?></td>
                                                  <td><?php echo $row['order_total'];?></td>
                                                  <td><?php echo $row['order_status'];?></td>
-                                                <td>
+                                             <!--    <td>
                                                 <a href="update_customer.php?id=<?php echo $id;?>" class="btn btn-primary btn-xs" ><i class = "fa fa-pencil"></i> Edit</a>
                                                   
-                                                </td>
+                                                </td> -->
                                                               
                                               </tr>
                                                              

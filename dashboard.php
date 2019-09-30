@@ -1,6 +1,10 @@
 <?php include 'session.php' ;?>
 <?php include 'header.php' ;?>
 
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 <style>
     
     #chartdiv {
@@ -17,6 +21,10 @@
       z-index: 10;
     }
 
+#chartdiv2 {
+  width: 100%;
+  height: 600px;
+}
 
 
 
@@ -47,6 +55,8 @@
     </div>
     <!-- 4-blocks row start -->
     <div class="row m-b-30 dashboard-header">
+
+      <div class = "col-md-6">
                <?php 
                     include 'dbcon.php';     
                     $today=date('Y-m-d');           
@@ -68,8 +78,8 @@
                 ?>  
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
-                        <span><?php echo strtoupper($row['delivery_status']);?></span>
-                        <h2 class="dashboard-total-products counter"><?php echo $row['count'];?></h2>
+                        <small><?php echo strtoupper($row['delivery_status']);?></small>
+                        <h6 class="dashboard-total-products counter"><?php echo $row['count'];?></h6>
                         <span class="label label-<?php echo $color;?>"><?=$status?></span>
                         <div class="side-box bg-<?php echo $color;?>">
                             <i class="icon-<?php echo $icon;?>"></i>
@@ -90,8 +100,8 @@
                 ?>    
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
-                        <span>TOTAL WALKIN CUSTOMER</span>
-                        <h2 class="dashboard-total-products"><span class="counter"><?php echo $row12['total'];?></span></h2>
+                        <small>TOTAL WALK-IN</small>
+                        <h6 class="dashboard-total-products"><span class="counter"><?php echo $row12['total'];?></span></h6>
                         <span class="label label-danger">Walkin</span>
                         <div class="side-box bg-danger">
                             <i class="icon-rocket"></i>
@@ -105,8 +115,8 @@
                 ?>    
                 <div class="col-lg-3 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
-                        <span>TOTAL DELIVERIES</span>
-                        <h2 class="dashboard-total-products"><span class="counter"><?php echo $row1['total'];?></span></h2>
+                        <small>TOTAL DELIVERIES</small>
+                        <h6 class="dashboard-total-products"><span class="counter"><?php echo $row1['total'];?></span></h6>
                         <span class="label label-primary">Overall</span>
                         <div class="side-box bg-primary">
                             <i class="icon-social-soundcloud"></i>
@@ -114,62 +124,34 @@
                     </div>
                 </div>
 
+                <?php    
+                     $quer=mysqli_query($con,"SELECT SUM(order_total) as total_walk FROM `order`  where  order_type = 'Walkin' ")or die(mysqli_error($con));
+                        $rowz=mysqli_fetch_array($quer);
+                         // $order_type = $row24['order_type'];
+                  ?> 
 
-                  
+                   <?php    
+                     $quer2=mysqli_query($con,"SELECT SUM(order_total) as total FROM `order`  where  order_type = 'Delivery' ")or die(mysqli_error($con));
+                        $rowz1=mysqli_fetch_array($quer2);
+                         // $order_type = $row24['order_type'];
+                  ?> 
+                <div class="col-lg-12 col-sm-6">
+                    <div class="col-sm-12 card dashboard-product">
+                        <h4/>Overall Total Sales Walkin and For Delivery</h4>
 
-            </div>
-            <!-- 4-blocks row end -->
-            
-            <!-- 1-3-block row start -->
-        <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="main-header">
-                            <h4>Pending Deliveries</h4>
+                        <div class = "panel-heading">
+                            <h4>Walkin <span class = "label label-warning dashboard-total-products counter"><?=$rowz['total_walk']?></span></h4>
+                            <h4>For Delivery <span class = "label label-success dashboard-total-products counter"><?=$rowz1['total']?></span></h4>
                         </div>
-                        <div class="card-block">
-                            <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Delivery Date</th>
-                                            <th>Customer</th>
-                                            <th>Contact</th>
-                                            <th>Address</th>
-                                            <th>Total</th>
-                                            <th>Payment Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php 
-                                            include 'dbcon.php';                
-                                            $query=mysqli_query($con,"SELECT * FROM delivery natural join `order` natural join customer where delivery_status='pending' order by order_date")or die(mysqli_error($con));
-                                                while ($row=mysqli_fetch_array($query)){
-                                                ?>  
-                                              <tr>
-                                                 <td><?php echo $row['order_id'];?>
-                                                 <td><?php echo $row['delivery_date'];?>
-                                                 <td><?php echo $row['name'];?>
-                                                 <td><?php echo $row['contact_number'];?>
-                                                 <td><?php echo $row['address'];?></td>
-                                                 <td><?php echo $row['order_total'];?></td>
-                                                 <td><?php echo $row['payment_status'];?></td>
-                                                         
-                                              </tr>
-                                                             
-                                          <?php }?>
-                                        </tbody>
-                            </table>
-                        </div>
+                        
+                      <div id="chartdiv2"></div>
                     </div>
                 </div>
+
 </div>
 
-            <div class = "row">
-                 <div class="main-header">
-                    <h4>Overall Statisctics</h4>
-                </div>
-                <div class = "col-lg-5">
+<div class  = "col-lg-6">
+  <div class = "col-lg-12">
                     <div class = "card">
                         <div class = "main-header">
                             <h4>Overall Data for Order Types</h4>
@@ -178,20 +160,16 @@
                     </div>
                    
                     </div>
-                </div>
+  </div>
+</div>
+                  
+
             </div>
-            
-       
-        <!-- 1-3-block row end -->
-
-        <!-- 3-1-block start -->
-       
-
    
 
   
       <?php 
-        $query21=mysqli_query($con,"SELECT *,COUNT(*) as total_count FROM delivery natural join `order` natural join customer")or die(mysqli_error($con));
+        $query21=mysqli_query($con,"SELECT *,COUNT(*) as total_count FROM delivery natural join `order` natural join customer WHERE order.order_type = 'delivery' ")or die(mysqli_error($con));
         $row21=mysqli_fetch_array($query21);
        ?>   
 
@@ -202,6 +180,21 @@
       ?>  
 
 
+
+
+      <?php    
+         $query23=mysqli_query($con,"SELECT SUM(order_total) as total FROM `order`  where  order_type = 'delivery' ")or die(mysqli_error($con));
+            $row23=mysqli_fetch_array($query23);
+             // $order_type = $row23['order_type'];
+      ?>  
+
+      <?php    
+         $query24=mysqli_query($con,"SELECT SUM(order_total) as total_walk FROM `order`  where  order_type = 'Walkin' ")or die(mysqli_error($con));
+            $row24=mysqli_fetch_array($query24);
+             // $order_type = $row24['order_type'];
+      ?> 
+
+
       <!-- Required Jqurey -->
    <?php include 'index-script.php';?>
 
@@ -209,7 +202,7 @@
 
 
 <script type="text/javascript">
-    var chart = AmCharts.makeChart("chartdiv", {
+  var chart = AmCharts.makeChart("chartdiv", {
   "type": "pie",
   "theme": "light",
   "dataProvider": [{
@@ -226,6 +219,28 @@
     "fixedPosition": true
   }
 });
+
+
+  var chart = AmCharts.makeChart("chartdiv2", {
+  "type": "pie",
+  "theme": "dark",
+  "dataProvider": [{
+    "country": "Total Sales Walkin",
+    "litres": <?php echo $row24['total_walk'];?>    
+  }, {
+    "country": "Total Sales For Delivery",
+    "litres": <?php echo $row23['total'];?>
+  }],
+  "valueField": "litres",
+  "titleField": "country",
+  "colorField": "color",
+  "balloon": {
+    "fixedPosition": true
+  }
+});
+
+
+
    </script>
 </body>
 

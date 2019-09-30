@@ -56,7 +56,7 @@
                                         <thead>
                                         <tr>
                                        
-                                            <th>Order ID</th>
+                                            <th>Order No.</th>
                                             <th>Delivery Date</th>
                                             <th>Customer</th>
                                             <th>Contact</th>
@@ -73,7 +73,7 @@
                                                 while ($row=mysqli_fetch_array($query)){
                                                 ?>  
                                               <tr>
-                                                 <td><?php echo $row['order_id'];?>
+                                                 <td>BRWS-00<?php echo $row['order_id'];?>
                                                  <td><?php echo $row['delivery_date'];?>
                                                  <td><?php echo $row['name'];?>
                                                  <td><?php echo $row['contact_number'];?>

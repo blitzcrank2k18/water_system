@@ -18,6 +18,7 @@
         
             
                             <h5 style="text-align: center">Blue Water Refilling Station</h5>
+                            <h6 style="text-align: center; color : red ;">OR No.  - BWRS-00<?=$rowc['order_id']?></h6>
                    
                                 <table style="width: 100%">
                                     <tr>
@@ -73,6 +74,18 @@
                                                 <th></th>
                                                 <th>Total</th>
                                                 <th><?php echo $rowc['order_total'];?></th>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Amount Paid or rendered</th>
+                                                <th><?php echo $rowc['payment'];?></th>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Balance to paid</th>
+                                                <th><?php echo $rowc['balance'];?></th>
                                             </tr>
                                         </tbody>
                                     </table>
