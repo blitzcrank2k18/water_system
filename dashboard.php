@@ -23,7 +23,7 @@
 
 #chartdiv2 {
   width: 100%;
-  height: 600px;
+  height: 430px;
 }
 
 
@@ -56,7 +56,7 @@
     <!-- 4-blocks row start -->
     <div class="row m-b-30 dashboard-header">
 
-      <div class = "col-md-6">
+      <div class = "col-md-12">
                <?php 
                     include 'dbcon.php';     
                     $today=date('Y-m-d');           
@@ -135,7 +135,11 @@
                         $rowz1=mysqli_fetch_array($quer2);
                          // $order_type = $row24['order_type'];
                   ?> 
-                <div class="col-lg-12 col-sm-6">
+                
+
+</div>
+
+<!-- <div class="col-lg-6 col-sm-6">
                     <div class="col-sm-12 card dashboard-product">
                         <h4/>Overall Total Sales Walkin and For Delivery</h4>
 
@@ -145,26 +149,44 @@
                         </div>
                         
                       <div id="chartdiv2"></div>
-                    </div>
-                </div>
+                  </div>
+</div> -->
 
-</div>
 
 <div class  = "col-lg-6">
   <div class = "col-lg-12">
-                    <div class = "card">
-                        <div class = "main-header">
-                            <h4>Overall Data for Order Types</h4>
-                        </div>
-                         <div class = "card-block" id="chartdiv">
-                    </div>
-                   
-                    </div>
+     <div class = "card">
+       <div class = "main-header">
+          <h4>Overall Data for Order Types</h4>
+        </div>
+        <div class = "card-block">
+        <!--   <h4>Walkin <span class = "label label-warning dashboard-total-products counter"><?=$rowz['total_walk']?></span></h4>
+          <h4>For Delivery <span class = "label label-success dashboard-total-products counter"><?=$rowz1['total']?></span></h4> -->
+        </div>
+
+          <div class = "card-block" id="chartdiv"></div>
+      </div>
+  </div>
+</div>
+
+
+<div class  = "col-lg-6">
+  <div class = "col-lg-12">
+     <div class = "card">
+        <div class = "main-header">
+          <h4/>Overall Total Sales Walkin and For Delivery</h4>
+        </div>
+        <div class = "card-block">
+          <h4>Walkin <span class = "label label-warning dashboard-total-products counter"><?=$rowz['total_walk']?></span></h4>
+          <h4>For Delivery <span class = "label label-success dashboard-total-products counter"><?=$rowz1['total']?></span></h4>
+        </div>
+          <div class = "card-block" id="chartdiv2"></div>                   
+    </div>
   </div>
 </div>
                   
 
-            </div>
+  </div>
    
 
   
@@ -225,10 +247,10 @@
   "type": "pie",
   "theme": "dark",
   "dataProvider": [{
-    "country": "Total Sales Walkin",
+    "country": "Walkin",
     "litres": <?php echo $row24['total_walk'];?>    
   }, {
-    "country": "Total Sales For Delivery",
+    "country": "For Delivery",
     "litres": <?php echo $row23['total'];?>
   }],
   "valueField": "litres",

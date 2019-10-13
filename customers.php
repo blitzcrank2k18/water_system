@@ -60,8 +60,11 @@
                                 <input type = "text" class = "form-control" name = "name" placeholder = "Enter Customer Name" required>
                             </div>
                              <div class = "form-group">
-                                <textarea class = "form-control" name = "address" placeholder="Enter Address" required></textarea>
+                                <input type = "text" class = "form-control" name = "street" placeholder = "Enter Street" required>                                
                             </div>
+                            <div class = "form-group">
+                                <input type = "text" class = "form-control" name = "barangay" placeholder = "Enter Barangay" required>                                
+                            </div>                            
                             <div class = "form-group">
                                 <input  type = "text" class = "form-control" name = "contact_number" placeholder = "Contact number 639xxxxxxxxx" required>
                             </div>
@@ -103,7 +106,8 @@
                                         <tr>
                                        
                                             <th>Full Name</th>
-                                            <th>Address</th>
+                                            <th>Street</th>
+                                            <th>Barangay</th>
                                             <th>Contact No.</th>
                                             <th>Type</th>
                                             <th>Status</th>
@@ -119,7 +123,8 @@
                                                 ?>  
                                               <tr>
                                                  <td><?php echo $row['name'];?>
-                                                 <td><?php echo $row['address'];?></td>
+                                                 <td><?php echo $row['street'];?></td>
+                                                 <td><?php echo $row['barangay'];?></td>
                                                  <td><?php echo $row['contact_number'];?></td>
                                                  <td><?php echo $row['type'];?></td>
                                                  <td>

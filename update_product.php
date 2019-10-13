@@ -56,50 +56,37 @@
                 </div>
                                         <?php 
                                             include 'dbcon.php';                
-                                            $query1=mysqli_query($con,"SELECT * FROM customer natural join type WHERE customer_id = $id")or die(mysqli_error($con));
+                                            $query1=mysqli_query($con,"SELECT * FROM product ")or die(mysqli_error($con));
                                                 $row=mysqli_fetch_array($query1)
                                         ?> 
                 <div class="col-sm-6 add">
                   <div class="card" style="padding:30px !important;">
                         <div class="card-header">
-                            <h5 class="card-header-text">Edit Customer</h5>
+                            <h5 class="card-header-text">Edit Product</h5>
                             
                         </div>
                         <div class="card-block">
                             <div class="row">
-                            <form method = "post" id = "form-add-user" action = "update_customer_query.php">
+                            <form method = "post" id = "form-add-user" action = "update_product_query.php">
                             <div class = "form-group">
-                                <input  type = "hidden" class = "form-control" name = "customer_id" value = "<?=$id;?>">
+                                <input  type = "hidden" class = "form-control" name = "product_id" value = "<?=$id;?>">
 
-                             <input id = "firstname" type = "text" class = "form-control" name = "name" value = "<?=$row['name'];?>">
+                             <input id = "firstname" type = "text" class = "form-control" name = "product_name" value = "<?=$row['product_name'];?>">
                             </div>
-                             <div class = "form-group">
-                                 <input id = "firstname" type = "text" class = "form-control" name = "street" value = "<?=$row['street'];?>">
-                            </div>
+                            
                             <div class = "form-group">
-                                 <input id = "firstname" type = "text" class = "form-control" name = "barangay" value = "<?=$row['barangay'];?>">
-                            </div>
-                            <div class = "form-group">
-                                <input id = "username" type = "text" class = "form-control" name = "contact_number" value = "<?=$row['contact_number'];?>">
-                            </div>
-                            <div class = "form-group">
-                                <select class="form-control" name="type_id">
-                                    <option value="<?php echo $row['type_id'];?>"><?php echo $row['type']." (".$row['discount'];?>% disc)</option>
-                                <?php 
-                                            $query1=mysqli_query($con,"SELECT * FROM type where type_id<>'$row[type_id]'")or die(mysqli_error($con));
-                                                while ($row1=mysqli_fetch_array($query1)){
-                                                $id=$row1['type_id'];                      
-                                                ?>                                     
-                                    <option value="<?php echo $id;?>"><?php echo $row1['type']." (".$row1['discount'];?>% disc)</option>
-                                <?php }?>
+                                <select name  = "category" class = "form-control">
+                                    <option><?=$row['category']?></option>
+                                    <option>Container with Handle</option>
+                                    <option>Round Container</option>
+                                     <option>Bottled Water</option>
                                 </select>
                             </div>
                             <div class = "form-group">
-                                <select name = "status" class = "form-control">
-                                    <option selected  value = "<?=$row['status']?>"><?=$row['status']?></option>
-                                    <option value="Active">Active</option>
-                                    <option value="Inactive">In-active</option>
-                                </select>
+                               <input id = "firstname" type = "text" class = "form-control" name = "size" value = "<?=$row['size'];?>">
+                            </div>
+                            <div class = "form-group">
+                                <input id = "firstname" type = "text" class = "form-control" name = "price" value = "<?=$row['price'];?>">
                             </div>
                             <div class = "form-group">
                                 <button type = "submit" class = "btn btn-primary btn-block save" name = "update"><i class = "fa fa-save"></i> Save</button>

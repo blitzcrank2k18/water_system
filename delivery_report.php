@@ -65,7 +65,7 @@
                                 <option selected disabled> Select Delivery Boy </option>
                                 <?php
                                  include 'dbcon.php';
-                                 $query1=mysqli_query($con,"SELECT * FROM user WHERE user_type = 'delivery' ")or die(mysqli_error($con));
+                                 $query1=mysqli_query($con,"SELECT * FROM user WHERE user_type = 'Delivery Personel' ")or die(mysqli_error($con));
                                   while ($row=mysqli_fetch_array($query1)){
 
                                     $id = $row['user_id']
@@ -106,8 +106,12 @@
                 if (isset($_POST['generate'])) {
                    $start = date('Y-m-d', strtotime($_POST['start']));
                    $end = date('Y-m-d', strtotime($_POST['end']));
+                   $id  =$_POST['user_id'];
+                   
 
-                   $query = "SELECT * FROM delivery LEFT JOIN `order` ON order.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = order.customer_id LEFT JOIN user ON user.user_id = delivery.user_id WHERE order.order_date BETWEEN '$start' AND '$end' AND delivery.delivery_status ='delivered' AND delivery.user_id = '$id' ORDER BY delivery.delivery_date DESC ";
+                   $query = "SELECT * FROM delivery LEFT JOIN `order` ON `order`.order_id = delivery.order_id LEFT JOIN customer ON customer.customer_id = `order`.customer_id LEFT JOIN user ON user.user_id = delivery.user_id WHERE `order`.order_date BETWEEN '$start' AND '$end' AND delivery.delivery_status ='delivered' AND delivery.user_id = '$id' ORDER BY delivery.delivery_date";
+
+                   // $query = "SELECT * FROM delivery LEFT JOIN `order` ON `order`.order_id = delivery.order_id WHERE `order`.order_date BETWEEN '$start' AND '$end'";
 
                    $data = mysqli_query($con, $query) ;
 
