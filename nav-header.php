@@ -1,5 +1,5 @@
 <header class="main-header-top hidden-print">
-    <a href="index.html" class="logo">BLUEWATER REFILING</a>
+    <a href="dashboard.php" class="logo">WATER REFILLING STATION EB MAGALONA NEGROS OCCIDENTAL</a>
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button--><a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
         <!-- Navbar Right Menu-->

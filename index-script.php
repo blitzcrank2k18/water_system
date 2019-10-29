@@ -14,6 +14,7 @@
 
       <!--classic JS-->
       <script src="assets/plugins/classie/classie.js"></script>
+      <script src="assets/js/mychart.js"></script>
 
       <!-- notification -->
       <script src="assets/plugins/notification/js/bootstrap-growl.min.js"></script>

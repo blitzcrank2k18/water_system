@@ -4,7 +4,7 @@
                 <div class="user-panel">
                     <div class="f-left image"><img src="assets/images/avatar-1.png" alt="User Image" class="img-circle"></div>
                     <div class="f-left info">
-                        <p><?=$user_username;?></p>
+								<p>User</p>
                         <p class="designation">Administrator</p>
                     </div>
                 </div>

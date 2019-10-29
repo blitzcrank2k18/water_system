@@ -7,8 +7,8 @@
 
 <style>
     
-    #chartdiv {
-      width: 100%;
+    #mycanvas {
+      width: 200%;
       height: 500px;
     }
 
@@ -153,24 +153,25 @@
 </div> -->
 
 
-<div class  = "col-lg-6">
+<div class  = "col-lg-12">
   <div class = "col-lg-12">
      <div class = "card">
        <div class = "main-header">
-          <h4>Overall Data for Order Types</h4>
+          <h4>Overall Data for Barangay</h4>
         </div>
         <div class = "card-block">
         <!--   <h4>Walkin <span class = "label label-warning dashboard-total-products counter"><?=$rowz['total_walk']?></span></h4>
           <h4>For Delivery <span class = "label label-success dashboard-total-products counter"><?=$rowz1['total']?></span></h4> -->
         </div>
 
-          <div class = "card-block" id="chartdiv"></div>
+          <canvas class ="card-block" id="mycanvas"></canvas>
       </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 
 
-<div class  = "col-lg-6">
+<div class  = "col-lg-12">
   <div class = "col-lg-12">
      <div class = "card">
         <div class = "main-header">
